@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "nornir_netbox"
+version = "0.1.0"
+description = "Netbox plugin for Nornir"
+authors = ["Wim Van Deun <7521270+enzzzy@users.noreply.github.com>", "Clay584"]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+requests = "^2.23.0"
+nornir = "^2.4.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.4.1"
+requests_mock = "^1.7.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
