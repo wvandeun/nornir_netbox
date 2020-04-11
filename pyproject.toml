@@ -13,6 +13,10 @@ nornir = "^2.4.0"
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.1"
 requests_mock = "^1.7.0"
+black = "^19.10b0"
+mypy = "^0.770"
+pylama = "^7.7.1"
+pytest-cov = "^2.8.1"
 
 [build-system]
 requires = ["poetry>=0.12"]

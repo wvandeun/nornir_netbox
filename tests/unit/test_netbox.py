@@ -10,6 +10,7 @@ import pytest  # noqa
 
 BASE_PATH = os.path.dirname(__file__)
 
+
 def get_inv(requests_mock, plugin, pagination, **kwargs):
     if not pagination:
         with open(f"{BASE_PATH}/mocked/devices.json", "r") as f:
@@ -29,22 +30,19 @@ def get_inv(requests_mock, plugin, pagination, **kwargs):
                 )
     return plugin.deserialize(**kwargs)
 
+
 class TestNBInventory(object):
     plugin = NBInventory
 
     def test_inventory(self, requests_mock):
         inv = get_inv(requests_mock, self.plugin, False)
-        with open(
-            f"{BASE_PATH}/{self.plugin.__name__}/expected.json", "r"
-        ) as f:
+        with open(f"{BASE_PATH}/{self.plugin.__name__}/expected.json", "r") as f:
             expected = json.load(f)
         assert expected == Inventory.serialize(inv).dict()
 
     def test_inventory_pagination(self, requests_mock):
         inv = get_inv(requests_mock, self.plugin, False)
-        with open(
-            f"{BASE_PATH}/{self.plugin.__name__}/expected.json", "r"
-        ) as f:
+        with open(f"{BASE_PATH}/{self.plugin.__name__}/expected.json", "r") as f:
             expected = json.load(f)
         assert expected == Inventory.serialize(inv).dict()
 
@@ -56,10 +54,7 @@ class TestNBInventory(object):
             transform_function=self.transform_function,
         )
         with open(
-            (
-                f"{BASE_PATH}/{self.plugin.__name__}/"
-                "expected_transform_function.json"
-            ),
+            (f"{BASE_PATH}/{self.plugin.__name__}/" "expected_transform_function.json"),
             "r",
         ) as f:
             expected = json.load(f)
