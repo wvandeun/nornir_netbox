@@ -1,0 +1,20 @@
+---
+dev3.group_2:
+    port: 22
+    hostname: dev3.group_2
+    username:
+    password:
+    platform: linux
+    data:
+        www_server: apache
+        role: www
+    groups:
+        - group_2
+    connection_options:
+        napalm:
+            platform: mock
+            hostname:
+            port:
+            username:
+            password:
+            extras: {}
