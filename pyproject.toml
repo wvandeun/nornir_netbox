@@ -8,7 +8,7 @@ license = "Apache-2.0"
 [tool.poetry.dependencies]
 python = "^3.6"
 requests = "^2.23.0"
-nornir = "^2.4.0"
+nornir = { git = "https://github.com/nornir-automation/nornir/", branch = "3.0.0-entrypoints" }
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.1"
