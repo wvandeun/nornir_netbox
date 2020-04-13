@@ -2,7 +2,7 @@ import json
 import os
 
 from nornir.core.deserializer.inventory import Inventory
-from nornir_netbox.inventory.netbox import NBInventory, NetboxInventory2
+from nornir_netbox.inventory import NBInventory, NetboxInventory2
 
 # We need import below to load fixtures
 import pytest  # noqa
