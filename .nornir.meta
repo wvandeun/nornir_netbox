@@ -1,14 +1,12 @@
 ---
 name: nornir_nornir
 summary: |
-  Nornir inventory plugin for `Napalm <github.com/netbox-community/netbox/>`_.
+    Nornir inventory plugin for [NetBox](https://github.com/netbox-community/netbox)
 nornir_version: ~3
 categories:
   - netbox
   - inventory
 intro_file: README.md
-badges:
-  - https://github.com/nornir-automation/nornir/workflows/test_nornir_napalm/badge.svg
 inventory_plugins:
   - nornir_netbox.inventory.NBInventory
   - nornir_netbox.inventory.NetboxInventory2
