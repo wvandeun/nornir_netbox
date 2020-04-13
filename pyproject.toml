@@ -11,12 +11,12 @@ requests = "^2.23.0"
 nornir = { git = "https://github.com/nornir-automation/nornir/", branch = "3.0.0-entrypoints" }
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.4.1"
-requests_mock = "^1.7.0"
-black = "^19.10b0"
-mypy = "^0.770"
+black = { version = "19.10b0", allow-prereleases = true }
+mypy = "*"
 pylama = "^7.7.1"
-pytest-cov = "^2.8.1"
+pytest = "*"
+pytest-coverage = "^0.0"
+requests_mock = "^1.7.0"
 
 [build-system]
 requires = ["poetry>=0.12"]
