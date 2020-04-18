@@ -63,7 +63,7 @@ inventory:
 ```python
 >>> from nornir import InitNornir
 >>> InitNornir(
-...	    inventory={
+...     inventory={
 ...		    "plugin":"nornir_netbox.inventory.NetboxInventory2",
 ...		    "options": {
 ...		    	"nb_url": "https://netbox.local",
