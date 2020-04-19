@@ -33,7 +33,7 @@ inventory:
   plugin: nornir_netbox.inventory.NBInventory
   options:
     nb_url: "https://netbox.local"
-	nb_token: "123_NETBOX_API_TOKEN_456"
+    nb_token: "123_NETBOX_API_TOKEN_456"
 ```
 
 ```yaml
@@ -42,35 +42,37 @@ inventory:
   plugin: nornir_netbox.inventory.NetboxInventory2
   options:
     nb_url: "https://netbox.local"
-	nb_token: "123_NETBOX_API_TOKEN_456"
+    nb_token: "123_NETBOX_API_TOKEN_456"
 ```
 
 ### Using the InitNornir function
 
 ```python
->>> from nornir import InitNornir
->>> InitNornir(
-...	    inventory={
-...		    "plugin":"nornir_netbox.inventory.NBInventory",
-...		    "options": {
-...		    	"nb_url": "https://netbox.local",
-...		    	"nb_token": "123_NETBOX_API_TOKEN_456"
-...		    }
-...	    }
-...	)
+from nornir import InitNornir
+
+nr = InitNornir(
+    inventory={
+        "plugin":"nornir_netbox.inventory.NBInventory",
+        "options": {
+            "nb_url": "https://netbox.local",
+            "nb_token": "123_NETBOX_API_TOKEN_456"
+        }
+    }
+)
 ```
 
 ```python
->>> from nornir import InitNornir
->>> InitNornir(
-...     inventory={
-...		    "plugin":"nornir_netbox.inventory.NetboxInventory2",
-...		    "options": {
-...		    	"nb_url": "https://netbox.local",
-...		    	"nb_token": "123_NETBOX_API_TOKEN_456"
-...		    }
-...	    }
-...	)
+from nornir import InitNornir
+
+nr = InitNornir(
+    inventory={
+        "plugin":"nornir_netbox.inventory.NetboxInventory2",
+        "options": {
+            "nb_url": "https://netbox.local",
+            "nb_token": "123_NETBOX_API_TOKEN_456"
+        }
+    }
+)
 ```
 
 # Useful Links
