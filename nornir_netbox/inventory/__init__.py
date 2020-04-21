@@ -15,7 +15,7 @@ class NBInventory(Inventory):
         use_slugs: bool = True,
         ssl_verify: Union[bool, str] = True,
         flatten_custom_fields: bool = True,
-        filter_parameters: Optional[Dict[str, Any]] = None,
+        filter_parameters: Optional[Dict[str, Any]] = {},
         **kwargs: Any,
     ) -> None:
         """
@@ -33,20 +33,22 @@ class NBInventory(Inventory):
         msg = "netbox.NBInventory is deprecated, use netbox.NetboxInventory2 instead"
         warnings.warn(msg, DeprecationWarning)
 
-        filter_parameters = filter_parameters or {}
-        nb_url = nb_url or os.environ.get("NB_URL", "http://localhost:8080")
-        nb_token = nb_token or os.environ.get(
-            "NB_TOKEN", "0123456789abcdef0123456789abcdef01234567"
+        self.base_url = nb_url or os.eniron.get("NB_URL", "http://localhost:8080")
+        nb_token = nb_token or os.envion.get(
+            "NB_TOKEN","0123456789abcdef0123456789abcdef01234567"
         )
+        self.use_slugs = use_slugs
+        self.flatten_custom_fields = flatten_custom_fields
+        self.filter_parameters = filter_parameters
 
-        session = requests.Session()
-        session.headers.update({"Authorization": f"Token {nb_token}"})
-        session.verify = ssl_verify
+        self.session = requests.Session()
+        self.session.headers.update({"Authorization": f"Token {nb_token}"})
+        self.session.verify = ssl_verify
 
-        # Fetch all devices from Netbox
-        # Since the api uses pagination we have to fetch until no next is provided
+    def load(self) -> Inventory:
 
-        url = f"{nb_url}/api/dcim/devices/?limit=0"
+        url = f"{self.base_url}/api/dcim/devices/?limit=0"
+
         nb_devices: List[Dict[str, Any]] = []
 
         while url:
@@ -60,8 +62,14 @@ class NBInventory(Inventory):
 
             url = resp.get("next")
 
-        hosts = {}
-        for d in nb_devices:
+        hosts = Hosts()
+        for elem in nb_devices:
+
+            host = Host(
+                hostname=elem.get("primary_ip", {}).get("address", "").split("/")[0],
+                platform=elem.get("platform", {}).get("slug", None) if self.use_slugs else elem.get("platform"),
+                
+            )
             host: HostsDict = {"data": {}}
 
             # Add value for IP address
@@ -101,6 +109,7 @@ class NBInventory(Inventory):
 
         # Pass the data back to the parent class
         super().__init__(hosts=hosts, groups={}, defaults={}, **kwargs)
+
 
 
 class NetboxInventory2(Inventory):
