@@ -1,8 +1,8 @@
 import json
 import os
 
-from nornir_netbox.inventory import NBInventory
-from nornir_netbox.inventory import NetboxInventory2
+from nornir_netbox.plugins.inventory.netbox import NBInventory
+from nornir_netbox.plugins.inventory.netbox import NetBoxInventory2
 
 # We need import below to load fixtures
 import pytest  # noqa
@@ -47,5 +47,5 @@ class TestNBInventory(object):
         assert expected == inv.dict()
 
 
-class TestNetboxInventory2(TestNBInventory):
-    plugin = NetboxInventory2
+class TestNetBoxInventory2(TestNBInventory):
+    plugin = NetBoxInventory2

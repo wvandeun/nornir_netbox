@@ -5,6 +5,10 @@ description = "Netbox plugin for Nornir"
 authors = ["Wim Van Deun <7521270+enzzzy@users.noreply.github.com>", "Clay584"]
 license = "Apache-2.0"
 
+[tool.poetry.plugins."nornir.plugins.inventory"]
+"NBInventory" = "nornir_netbox.plugins.inventory.netbox.NBInventory"
+"NetBoxInventory2" = "nornir_netbox.plugins.inventory.netbox.NetBoxInventory2"
+
 [tool.poetry.dependencies]
 python = "^3.6"
 requests = "^2.23.0"
