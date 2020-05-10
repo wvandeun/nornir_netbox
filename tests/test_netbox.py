@@ -1,8 +1,8 @@
 import json
 import os
 
-from nornir.core.deserializer.inventory import Inventory
-from nornir_netbox.inventory import NBInventory, NetboxInventory2
+from nornir_netbox.inventory import NBInventory
+from nornir_netbox.inventory import NetboxInventory2
 
 # We need import below to load fixtures
 import pytest  # noqa
@@ -28,7 +28,7 @@ def get_inv(requests_mock, plugin, pagination, **kwargs):
                     json=json.load(f),
                     headers={"Content-type": "application/json"},
                 )
-    return plugin.deserialize(**kwargs)
+    return plugin().load()
 
 
 class TestNBInventory(object):
@@ -38,38 +38,14 @@ class TestNBInventory(object):
         inv = get_inv(requests_mock, self.plugin, False)
         with open(f"{BASE_PATH}/{self.plugin.__name__}/expected.json", "r") as f:
             expected = json.load(f)
-        assert expected == Inventory.serialize(inv).dict()
+        assert expected == inv.dict()
 
     def test_inventory_pagination(self, requests_mock):
         inv = get_inv(requests_mock, self.plugin, False)
         with open(f"{BASE_PATH}/{self.plugin.__name__}/expected.json", "r") as f:
             expected = json.load(f)
-        assert expected == Inventory.serialize(inv).dict()
-
-    def test_inventory_transform_function(self, requests_mock):
-        inv = get_inv(
-            requests_mock,
-            self.plugin,
-            False,
-            transform_function=self.transform_function,
-        )
-        with open(
-            (f"{BASE_PATH}/{self.plugin.__name__}/" "expected_transform_function.json"),
-            "r",
-        ) as f:
-            expected = json.load(f)
-        assert expected == Inventory.serialize(inv).dict()
-
-    @staticmethod
-    def transform_function(host):
-        vendor_map = {"Cisco": "ios", "Juniper": "junos"}
-        host["platform"] = vendor_map[host["vendor"]]
+        assert expected == inv.dict()
 
 
 class TestNetboxInventory2(TestNBInventory):
     plugin = NetboxInventory2
-
-    @staticmethod
-    def transform_function(host):
-        vendor_map = {"Cisco": "ios", "Juniper": "junos"}
-        host.platform = vendor_map[host["device_type"]["manufacturer"]["name"]]
