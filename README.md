@@ -1,3 +1,3 @@
 # nornir_netbox
 
-Netbox plugin for Nornir
+NetBox plugin for Nornir

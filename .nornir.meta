@@ -8,5 +8,5 @@ categories:
   - inventory
 intro_file: README.md
 inventory_plugins:
-  - nornir_netbox.inventory.NBInventory
-  - nornir_netbox.inventory.NetboxInventory2
+  - nornir_netbox.plugins.inventory.netbox.NBInventory
+  - nornir_netbox.plugins.inventory.netbox.NetBoxInventory2
