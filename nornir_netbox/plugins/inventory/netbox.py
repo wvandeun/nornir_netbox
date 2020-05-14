@@ -182,7 +182,7 @@ class NetBoxInventory2:
 
             hostname = None
             if device.get("primary_ip"):
-                   hostname = device.get("primary_ip", {}).get("address", "").split("/")[0]
+                hostname = device.get("primary_ip", {}).get("address", "").split("/")[0]
 
             host = Host(
                 name=device.get("name") or str(device.get("id")),
