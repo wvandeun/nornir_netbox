@@ -5,11 +5,11 @@
 
 # nornir_netbox
 
-[NetBox](https://github.com/netbox-community/netbox) inventory plugin for [Nornir](https://github.com/nornir-automation/nornir)
+[NetBox](https://github.com/netbox-community/netbox) plugin for [Nornir](https://github.com/nornir-automation/nornir)
 
-The NetBox inventory plugin exposes 2 inventory classes for usage.
+The NetBox plugin exposes 2 inventory classes for usage.
 - `NBInventory` is deprecated and should not be used anymore, it is still available for backwards compatibility only
-- `NetboxInventory2` is the recommended Netbox inventory plugin. It provides some extra functionality such as exposing all Netbox device attributes to the Nonir Host through the data attribute. It is the recommended plugin to use. All feature development will only take place on this plugin.
+- `NetBoxInventory2` is the recommended NetBox inventory plugin. It provides some extra functionality such as exposing all NetBox device attributes to the Nonir Host through the data attribute. It is the recommended plugin to use. All feature development will only take place on this plugin.
 
 ## Install
 
@@ -30,7 +30,7 @@ poetry add git+https://github.com/wvandeun/nornir_netbox.git
 ```yaml
 ---
 inventory:
-  plugin: nornir_netbox.inventory.NBInventory
+  plugin: NBInventory
   options:
     nb_url: "https://netbox.local"
     nb_token: "123_NETBOX_API_TOKEN_456"
@@ -39,7 +39,7 @@ inventory:
 ```yaml
 ---
 inventory:
-  plugin: nornir_netbox.inventory.NetboxInventory2
+  plugin: NetBoxInventory2
   options:
     nb_url: "https://netbox.local"
     nb_token: "123_NETBOX_API_TOKEN_456"
@@ -52,7 +52,7 @@ from nornir import InitNornir
 
 nr = InitNornir(
     inventory={
-        "plugin":"nornir_netbox.inventory.NBInventory",
+        "plugin":"NBInventory",
         "options": {
             "nb_url": "https://netbox.local",
             "nb_token": "123_NETBOX_API_TOKEN_456"
@@ -66,7 +66,7 @@ from nornir import InitNornir
 
 nr = InitNornir(
     inventory={
-        "plugin":"nornir_netbox.inventory.NetboxInventory2",
+        "plugin":"NetBoxInventory2",
         "options": {
             "nb_url": "https://netbox.local",
             "nb_token": "123_NETBOX_API_TOKEN_456"
