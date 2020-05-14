@@ -94,9 +94,13 @@ class NBInventory:
                 data["model"] = device.get("device_type")
                 platform = device.get("platform")
 
+            hostname = None
+            if device.get("primary_ip"):
+                hostname = device.get("primary_ip", {}).get("address", "").split("/")[0]
+
             host = Host(
                 name=device.get("name") or str(device.get("id")),
-                hostname=device.get("primary_ip", {}).get("address", "").split("/")[0],
+                hostname=hostname,
                 platform=platform,
                 data=data,
             )
@@ -167,19 +171,23 @@ class NetBoxInventory2:
             url = resp.get("next")
 
         hosts = Hosts()
-        for dev in nb_devices:
+        for device in nb_devices:
 
-            data = copy.deepcopy(dev)
+            data = copy.deepcopy(device)
 
             if self.flatten_custom_fields:
-                for cf, value in dev["custom_fields"].items():
+                for cf, value in device["custom_fields"].items():
                     data[cf] = value
                 data.pop("custom_fields")
 
+            hostname = None
+            if device.get("primary_ip"):
+                hostname = device.get("primary_ip").get("address", "").split("/")[0]
+
             host = Host(
-                name=dev.get("name") or str(dev.get("id")),
-                hostname=dev.get("primary_ip", {}).get("address", "").split("/")[0],
-                platform=dev.get("platform"),
+                name=device.get("name") or str(device.get("id")),
+                hostname=hostname,
+                platform=device.get("platform"),
                 data=data,
             )
 
