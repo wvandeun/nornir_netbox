@@ -97,6 +97,9 @@ class NBInventory:
             hostname = None
             if device.get("primary_ip"):
                 hostname = device.get("primary_ip", {}).get("address", "").split("/")[0]
+            else:
+                if device.get("name") is not None:
+                    hostname = device["name"]
 
             host = Host(
                 name=device.get("name") or str(device.get("id")),
@@ -183,6 +186,9 @@ class NetBoxInventory2:
             hostname = None
             if device.get("primary_ip"):
                 hostname = device.get("primary_ip", {}).get("address", "").split("/")[0]
+            else:
+                if device.get("name") is not None:
+                    hostname = device["name"]
 
             host = Host(
                 name=device.get("name") or str(device.get("id")),
