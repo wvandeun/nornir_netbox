@@ -16,11 +16,11 @@ The NetBox plugin exposes 2 inventory classes for usage.
 The recommended way to install nornir_netbox is via pip or poetry.
 
 ```bash
-pip install git+https://github.com/wvandeun/nornir_netbox.git
+pip install nornir-netbox
 ```
 
 ```bash
-poetry add git+https://github.com/wvandeun/nornir_netbox.git
+poetry add nornir-netbox
 ```
 
 ## Example usage
