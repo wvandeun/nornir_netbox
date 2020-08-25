@@ -207,7 +207,7 @@ class NetBoxInventory2:
             hosts[host.name] = host
         return Inventory(hosts=hosts)
 
-    def get_interfaces(self, device):
+    def get_interfaces(self, device: Dict[str, Any]) -> Dict[str, Any]:
 
         url = f"{self.nb_url}/api/dcim/interfaces/?limit=0"
 
