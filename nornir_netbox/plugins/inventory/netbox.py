@@ -130,6 +130,8 @@ class NetBoxInventory2:
         flatten_custom_fields: Assign custom fields directly to the host's data attribute
             (defaults to False)
         filter_parameters: Key-value pairs that allow you to filter the NetBox inventory.
+        interfaces: add device or virtual machine interface information to inventory.
+            (defaults to False)
     """
 
     def __init__(
@@ -139,6 +141,7 @@ class NetBoxInventory2:
         ssl_verify: Union[bool, str] = True,
         flatten_custom_fields: bool = False,
         filter_parameters: Optional[Dict[str, Any]] = None,
+        interfaces: bool = False,
         **kwargs: Any,
     ) -> None:
         filter_parameters = filter_parameters or {}
@@ -150,6 +153,7 @@ class NetBoxInventory2:
         self.nb_url = nb_url
         self.flatten_custom_fields = flatten_custom_fields
         self.filter_parameters = filter_parameters
+        self.interfaces = interfaces
 
         self.session = requests.Session()
         self.session.headers.update({"Authorization": f"Token {nb_token}"})
@@ -183,6 +187,9 @@ class NetBoxInventory2:
                     data[cf] = value
                 data.pop("custom_fields")
 
+            if self.interfaces:
+                data["interfaces"] = self.get_interfaces(device)
+
             hostname = None
             if device.get("primary_ip"):
                 hostname = device.get("primary_ip", {}).get("address", "").split("/")[0]
@@ -199,3 +206,22 @@ class NetBoxInventory2:
 
             hosts[host.name] = host
         return Inventory(hosts=hosts)
+
+    def get_interfaces(self, device):
+        url = f"{self.nb_url}/api/dcim/interfaces/?limit=0"
+        interfaces: List[Dict[str, Any]] = []
+
+        while url:
+            r = self.session.get(url, params={"device_id": device.id})
+
+            if not r.status_code == 200:
+                raise ValueError(
+                    f"Failed to get interfaces from NetBox instance {self.nb_url}"
+                )
+
+            resp = r.json()
+            interfaces.extend(resp.get("results"))
+
+            url = resp.get("next")
+
+        return interfaces
