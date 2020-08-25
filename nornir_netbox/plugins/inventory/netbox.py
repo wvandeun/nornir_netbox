@@ -210,11 +210,11 @@ class NetBoxInventory2:
     def get_interfaces(self, device):
 
         url = f"{self.nb_url}/api/dcim/interfaces/?limit=0"
-        
+
         interfaces: List[Dict[str, Any]] = []
 
         while url:
-            r = self.session.get(url, params={"device_id": device.id})
+            r = self.session.get(url, params={"device_id": device["id"]})
 
             if not r.status_code == 200:
                 raise ValueError(
@@ -228,15 +228,16 @@ class NetBoxInventory2:
 
         url = f"{self.nb_url}/api/ipam/ip-addresses/?limit=0&assigned_to_interface=true"
 
-        for interface in interfaces if interface.count_ipaddresses:
-            r = self.session.get(url, params={"interface_id": interface['id']})
+        for interface in interfaces:
+            if interface["count_ipaddresses"]:
+                r = self.session.get(url, params={"interface_id": interface["id"]})
 
-            if not r.status_code == 200:
-                raise ValueError(
-                    f"Failed to get IP addresses from NetBox instance {self.nb_url}"
-                )
-            
-            resp = r.json()
-            interface['ip_addresses'] = resp.get("results")
+                if not r.status_code == 200:
+                    raise ValueError(
+                        f"Failed to get IP addresses from NetBox instance {self.nb_url}"
+                    )
+
+                resp = r.json()
+                interface["ip_addresses"] = resp.get("results")
 
         return {iface["name"]: iface for iface in interfaces}
