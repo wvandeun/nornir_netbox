@@ -41,7 +41,7 @@ class TestNBInventory(object):
         assert expected == inv.dict()
 
     def test_inventory_pagination(self, requests_mock):
-        inv = get_inv(requests_mock, self.plugin, False)
+        inv = get_inv(requests_mock, self.plugin, True)
         with open(f"{BASE_PATH}/{self.plugin.__name__}/expected.json", "r") as f:
             expected = json.load(f)
         assert expected == inv.dict()
