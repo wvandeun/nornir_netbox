@@ -24,7 +24,7 @@
                     "slug": "rt"
                 },
                 "tenant": null,
-                "platform": null,
+                "platform": "junos",
                 "serial": "",
                 "asset_tag": null,
                 "site": {
@@ -65,7 +65,7 @@
             },
 	    "name":"1-Core",
             "hostname": "10.0.1.1",
-            "platform": null,
+            "platform": "junos",
             "port": null,
             "username": null,
             "password": null,
@@ -168,7 +168,7 @@
                     "slug": "sw"
                 },
                 "tenant": null,
-                "platform": null,
+                "platform": "ios",
                 "serial": "",
                 "asset_tag": null,
                 "site": {
@@ -211,7 +211,7 @@
             },
 	    "name":"3-Access",
             "hostname": "192.168.3.1",
-            "platform": null,
+            "platform": "ios",
             "port": null,
             "username": null,
             "password": null,
@@ -242,7 +242,7 @@
                     "slug": "rt"
                 },
                 "tenant": null,
-                "platform": null,
+                "platform": "junos",
                 "serial": "",
                 "asset_tag": null,
                 "site": {
@@ -283,7 +283,7 @@
             },
 	    "name":"4",
             "hostname": "10.0.1.4",
-            "platform": null,
+            "platform": "junos",
             "port": null,
             "username": null,
             "password": null,
