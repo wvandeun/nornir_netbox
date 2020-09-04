@@ -86,13 +86,20 @@ class NBInventory:
                 data["site"] = device.get("site", {}).get("slug")
                 data["role"] = device.get("device_role", {}).get("slug")
                 data["model"] = device.get("device_type", {}).get("slug")
-                if device.get("platform"):
-                    platform = device.get("platform", {}).get("slug")
+                platform = (
+                    device["platform"]["slug"]
+                    if isinstance(device["platform"], dict)
+                    else device["platform"]
+                )
             else:
                 data["site"] = device.get("site", {}).get("name")
                 data["role"] = device.get("device_role")
                 data["model"] = device.get("device_type")
-                platform = device.get("platform")
+                platform = (
+                    device["platform"]["name"]
+                    if isinstance(device["platform"], dict)
+                    else device["platform"]
+                )
 
             hostname = None
             if device.get("primary_ip"):
@@ -190,10 +197,16 @@ class NetBoxInventory2:
                 if device.get("name") is not None:
                     hostname = device["name"]
 
+            platform = (
+                device["platform"]["name"]
+                if isinstance(device["platform"], dict)
+                else device["platform"]
+            )
+
             host = Host(
                 name=device.get("name") or str(device.get("id")),
                 hostname=hostname,
-                platform=device.get("platform"),
+                platform=platform,
                 data=data,
             )
 

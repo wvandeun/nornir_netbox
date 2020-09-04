@@ -24,8 +24,13 @@
                     "slug": "rt"
                 },
                 "tenant": null,
-                "platform": null,
-                "serial": "",
+		"platform": {
+		    "id": 1,
+		    "url": "http://localhost:8080/api/dcim/platforms/1/",
+		    "name": "junos",
+		    "slug": "junos"
+		},
+		"serial": "",
                 "asset_tag": null,
                 "site": {
                     "id": 3,
@@ -65,7 +70,7 @@
             },
 	    "name":"1-Core",
             "hostname": "10.0.1.1",
-            "platform": null,
+            "platform": "junos",
             "port": null,
             "username": null,
             "password": null,
@@ -168,8 +173,13 @@
                     "slug": "sw"
                 },
                 "tenant": null,
-                "platform": null,
-                "serial": "",
+		"platform": {
+		    "id": 2,
+		    "url": "http://localhost:8080/api/dcim/platforms/2/",
+		    "name": "ios",
+		    "slug": "ios"
+		},
+		"serial": "",
                 "asset_tag": null,
                 "site": {
                     "id": 2,
@@ -211,7 +221,7 @@
             },
 	    "name":"3-Access",
             "hostname": "192.168.3.1",
-            "platform": null,
+            "platform": "ios",
             "port": null,
             "username": null,
             "password": null,
@@ -242,9 +252,14 @@
                     "slug": "rt"
                 },
                 "tenant": null,
-                "platform": null,
-                "serial": "",
-                "asset_tag": null,
+		"platform": {
+		    "id": 1,
+		    "url": "http://localhost:8080/api/dcim/platforms/1/",
+		    "name": "junos",
+		    "slug": "junos"
+		},
+		"serial": "",
+		"asset_tag": null,
                 "site": {
                     "id": 3,
                     "url": "http://localhost:8080/api/dcim/sites/3/",
@@ -283,7 +298,7 @@
             },
 	    "name":"4",
             "hostname": "10.0.1.4",
-            "platform": null,
+            "platform": "junos",
             "port": null,
             "username": null,
             "password": null,

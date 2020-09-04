@@ -9,11 +9,12 @@ import pytest  # noqa
 
 
 BASE_PATH = os.path.dirname(__file__)
+VERSIONS = ["2.3.5", "2.8.9"]
 
 
-def get_inv(requests_mock, plugin, pagination, **kwargs):
+def get_inv(requests_mock, plugin, pagination, version, **kwargs):
     if not pagination:
-        with open(f"{BASE_PATH}/mocked/devices.json", "r") as f:
+        with open(f"{BASE_PATH}/mocked/{version}/devices.json", "r") as f:
             requests_mock.get(
                 "http://localhost:8080/api/dcim/devices/?limit=0",
                 json=json.load(f),
@@ -21,7 +22,7 @@ def get_inv(requests_mock, plugin, pagination, **kwargs):
             )
     else:
         for offset in range(3):
-            with open(f"{BASE_PATH}/mocked/devices-{offset}.json", "r") as f:
+            with open(f"{BASE_PATH}/mocked/{version}/devices-{offset}.json", "r") as f:
                 url = "http://localhost:8080/api/dcim/devices/?limit=0"
                 requests_mock.get(
                     f"{url}&offset={offset}" if offset else url,
@@ -34,15 +35,21 @@ def get_inv(requests_mock, plugin, pagination, **kwargs):
 class TestNBInventory(object):
     plugin = NBInventory
 
-    def test_inventory(self, requests_mock):
-        inv = get_inv(requests_mock, self.plugin, False)
-        with open(f"{BASE_PATH}/{self.plugin.__name__}/expected.json", "r") as f:
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory(self, requests_mock, version):
+        inv = get_inv(requests_mock, self.plugin, False, version)
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected.json", "r"
+        ) as f:
             expected = json.load(f)
         assert expected == inv.dict()
 
-    def test_inventory_pagination(self, requests_mock):
-        inv = get_inv(requests_mock, self.plugin, False)
-        with open(f"{BASE_PATH}/{self.plugin.__name__}/expected.json", "r") as f:
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_pagination(self, requests_mock, version):
+        inv = get_inv(requests_mock, self.plugin, False, version)
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected.json", "r"
+        ) as f:
             expected = json.load(f)
         assert expected == inv.dict()
 
