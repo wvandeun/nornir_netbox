@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nornir_netbox"
-version = "0.1.0a0"
+version = "0.1.0"
 description = "Netbox plugin for Nornir"
 authors = ["Wim Van Deun <7521270+enzzzy@users.noreply.github.com>", "Clay Curtis <2114016+clay584@users.noreply.github.com>"]
 license = "Apache-2.0"
@@ -12,7 +12,7 @@ license = "Apache-2.0"
 [tool.poetry.dependencies]
 python = "^3.6"
 requests = "^2.23.0"
-nornir = { version = "~3.0.0a2", allow-prereleases = true }
+nornir = { version = "~3.0.0b1", allow-prereleases = true }
 
 [tool.poetry.dev-dependencies]
 black = { version = "19.10b0", allow-prereleases = true }

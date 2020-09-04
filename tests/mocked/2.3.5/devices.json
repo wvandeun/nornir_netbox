@@ -26,7 +26,7 @@
         "slug": "rt"
       },
       "tenant": null,
-      "platform": null,
+      "platform": "junos",
       "serial": "",
       "asset_tag": null,
       "site": {
@@ -150,7 +150,7 @@
         "slug": "sw"
       },
       "tenant": null,
-      "platform": null,
+      "platform": "ios",
       "serial": "",
       "asset_tag": null,
       "site": {
@@ -212,7 +212,7 @@
         "slug": "rt"
       },
       "tenant": null,
-      "platform": null,
+      "platform": "junos",
       "serial": "",
       "asset_tag": null,
       "site": {
