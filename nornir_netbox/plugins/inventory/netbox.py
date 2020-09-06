@@ -1,11 +1,49 @@
-import copy
 import os
 import warnings
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union, Type
 
-from nornir.core.inventory import Hosts, Host, Inventory
+from nornir.core.inventory import ConnectionOptions
+from nornir.core.inventory import Defaults
+from nornir.core.inventory import Groups
+from nornir.core.inventory import Host
+from nornir.core.inventory import HostOrGroup
+from nornir.core.inventory import Hosts
+from nornir.core.inventory import Inventory
 
 import requests
+
+
+def _get_connection_options(data: Dict[str, Any]) -> Dict[str, ConnectionOptions]:
+    cp = {}
+    for cn, c in data.items():
+        cp[cn] = ConnectionOptions(
+            hostname=c.get("hostname"),
+            port=c.get("port"),
+            username=c.get("username"),
+            password=c.get("password"),
+            platform=c.get("platform"),
+            extras=c.get("extras"),
+        )
+    return cp
+
+
+def _get_inventory_element(
+    typ: Type[HostOrGroup], data: Dict[str, Any], name: str, defaults: Defaults
+) -> HostOrGroup:
+    return typ(
+        name=name,
+        hostname=data.get("hostname"),
+        port=data.get("port"),
+        username=data.get("username"),
+        password=data.get("password"),
+        platform=data.get("platform"),
+        data=data.get("data"),
+        groups=data.get(
+            "groups"
+        ),  # this is a hack, we will convert it later to the correct type
+        defaults=defaults,
+        connection_options=_get_connection_options(data.get("connection_options", {})),
+    )
 
 
 class NBInventory:
@@ -66,58 +104,66 @@ class NBInventory:
             url = resp.get("next")
 
         hosts = Hosts()
+        groups = Groups()
+        defaults = Defaults()
+
         for device in nb_devices:
 
-            data = {}
-            data["serial"] = device.get("serial")
-            data["vendor"] = (
+            serialized_device: Dict[Any, Any] = {}
+            serialized_device["data"] = {}
+            serialized_device["data"]["serial"] = device.get("serial")
+            serialized_device["data"]["vendor"] = (
                 device.get("device_type", {}).get("manufacturer", {}).get("name")
             )
-            data["asset_tag"] = device.get("asset_tag")
+            serialized_device["data"]["asset_tag"] = device.get("asset_tag")
 
             if self.flatten_custom_fields:
                 for key, value in device.get("custom_fields", {}).items():
-                    data[key] = value
+                    serialized_device["data"][key] = value
             else:
-                data["custom_fields"] = device.get("custom_fields", {})
+                serialized_device["data"]["custom_fields"] = device.get(
+                    "custom_fields", {}
+                )
 
-            platform = None
             if self.use_slugs:
-                data["site"] = device.get("site", {}).get("slug")
-                data["role"] = device.get("device_role", {}).get("slug")
-                data["model"] = device.get("device_type", {}).get("slug")
-                platform = (
+                serialized_device["data"]["site"] = device.get("site", {}).get("slug")
+                serialized_device["data"]["role"] = device.get("device_role", {}).get(
+                    "slug"
+                )
+                serialized_device["data"]["model"] = device.get("device_type", {}).get(
+                    "slug"
+                )
+                serialized_device["platform"] = (
                     device["platform"]["slug"]
                     if isinstance(device["platform"], dict)
                     else device["platform"]
                 )
             else:
-                data["site"] = device.get("site", {}).get("name")
-                data["role"] = device.get("device_role")
-                data["model"] = device.get("device_type")
-                platform = (
+                serialized_device["data"]["site"] = device.get("site", {}).get("name")
+                serialized_device["data"]["role"] = device.get("device_role")
+                serialized_device["data"]["model"] = device.get("device_type")
+                serialized_device["platform"] = (
                     device["platform"]["name"]
                     if isinstance(device["platform"], dict)
                     else device["platform"]
                 )
 
-            hostname = None
+            serialized_device["hostname"] = None
             if device.get("primary_ip"):
-                hostname = device.get("primary_ip", {}).get("address", "").split("/")[0]
+                serialized_device["hostname"] = (
+                    device.get("primary_ip", {}).get("address", "").split("/")[0]
+                )
             else:
                 if device.get("name") is not None:
-                    hostname = device["name"]
+                    serialized_device["hostname"] = device["name"]
 
-            host = Host(
-                name=device.get("name") or str(device.get("id")),
-                hostname=hostname,
-                platform=platform,
-                data=data,
+            name = device.get("name") or str(device.get("id"))
+
+            hosts[name] = _get_inventory_element(
+                Host, serialized_device, name, defaults
             )
 
-            hosts[host.name] = host
-
-        return Inventory(hosts=hosts)
+        return Inventory(hosts=hosts, groups=groups, defaults=defaults)
 
 
 class NetBoxInventory2:
@@ -181,14 +227,17 @@ class NetBoxInventory2:
             url = resp.get("next")
 
         hosts = Hosts()
-        for device in nb_devices:
+        groups = Groups()
+        defaults = Defaults()
 
-            data = copy.deepcopy(device)
+        for device in nb_devices:
+            serialized_device: Dict[Any, Any] = {}
+            serialized_device["data"] = device
 
             if self.flatten_custom_fields:
                 for cf, value in device["custom_fields"].items():
-                    data[cf] = value
-                data.pop("custom_fields")
+                    serialized_device["data"][cf] = value
+                serialized_device["data"].pop("custom_fields")
 
             hostname = None
             if device.get("primary_ip"):
@@ -196,19 +245,21 @@ class NetBoxInventory2:
             else:
                 if device.get("name") is not None:
                     hostname = device["name"]
+            serialized_device["hostname"] = hostname
 
             platform = (
                 device["platform"]["name"]
                 if isinstance(device["platform"], dict)
                 else device["platform"]
             )
+            serialized_device["platform"] = platform
 
-            host = Host(
-                name=device.get("name") or str(device.get("id")),
-                hostname=hostname,
-                platform=platform,
-                data=data,
+            name = serialized_device["data"].get("name") or str(
+                serialized_device["data"].get("id")
             )
 
-            hosts[host.name] = host
-        return Inventory(hosts=hosts)
+            hosts[name] = _get_inventory_element(
+                Host, serialized_device, name, defaults
+            )
+
+        return Inventory(hosts=hosts, groups=groups, defaults=defaults)
