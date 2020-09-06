@@ -1,16 +1,25 @@
 import os
 import warnings
-from typing import Any, Dict, List, Optional, Union, Type
+from typing import Any
+from typing import Dict
+from typing import List
+from typing import Optional
+from typing import Union
+from typing import Type
+from pathlib import Path
 
 from nornir.core.inventory import ConnectionOptions
 from nornir.core.inventory import Defaults
+from nornir.core.inventory import Group
 from nornir.core.inventory import Groups
 from nornir.core.inventory import Host
 from nornir.core.inventory import HostOrGroup
 from nornir.core.inventory import Hosts
 from nornir.core.inventory import Inventory
+from nornir.core.inventory import ParentGroups
 
 import requests
+import ruamel.yaml
 
 
 def _get_connection_options(data: Dict[str, Any]) -> Dict[str, ConnectionOptions]:
@@ -26,6 +35,16 @@ def _get_connection_options(data: Dict[str, Any]) -> Dict[str, ConnectionOptions
         )
     return cp
 
+def _get_defaults(data: Dict[str, Any]) -> Defaults:
+    return Defaults(
+        hostname=data.get("hostname"),
+        port=data.get("port"),
+        username=data.get("username"),
+        password=data.get("password"),
+        platform=data.get("platform"),
+        data=data.get("data"),
+        connection_options=_get_connection_options(data.get("connection_options", {})),
+    )
 
 def _get_inventory_element(
     typ: Type[HostOrGroup], data: Dict[str, Any], name: str, defaults: Defaults
@@ -192,6 +211,8 @@ class NetBoxInventory2:
         ssl_verify: Union[bool, str] = True,
         flatten_custom_fields: bool = False,
         filter_parameters: Optional[Dict[str, Any]] = None,
+        group_file: str = None,
+        defaults_file: str = None,
         **kwargs: Any,
     ) -> None:
         filter_parameters = filter_parameters or {}
@@ -207,8 +228,42 @@ class NetBoxInventory2:
         self.session = requests.Session()
         self.session.headers.update({"Authorization": f"Token {nb_token}"})
         self.session.verify = ssl_verify
+        self.group_file = Path(group_file).expanduser()
+        self.defaults_file = Path(defaults_file).expanduser()
+
+    @staticmethod
+    def _extract_device_groups(device):
+        extract_group_attributes = [
+            {
+                "name": "site",
+                "path": ["site", "slug"]
+            },
+            {
+                "name": "region",
+                "path": ["site", "region", "slug"]
+            },
+            {
+                "name": "platform",
+                "path": ["platform", "slug"]
+            },
+        ]
+        groups = []
+        data = device
+        for group in extract_group_attributes:
+            for hop in group.get("path", []):
+                v = data.get(hop)
+                if isinstance(v, dict):
+                    data = v
+                elif isinstance(v, str) and group.get("path", [])[-1] == hop:
+                    groups.append(f"{group.get('name', '')}__{v}")
+                else:
+                    #Unable to extract group
+                    break
+        return groups
+
 
     def load(self) -> Inventory:
+        yml = ruamel.yaml.YAML(typ="safe")
 
         url = f"{self.nb_url}/api/dcim/devices/?limit=0"
         nb_devices: List[Dict[str, Any]] = []
@@ -228,7 +283,23 @@ class NetBoxInventory2:
 
         hosts = Hosts()
         groups = Groups()
-        defaults = Defaults()
+
+        if self.defaults_file.exists():
+            with self.defaults_file.open("r") as f:
+                defaults_dict = yml.load(f) or {}
+            defaults = _get_defaults(defaults_dict)
+        else:
+            defaults = Defaults()
+
+        if self.group_file.exists():
+            with self.group_file.open("r") as f:
+                groups_dict = yml.load(f) or {}
+
+            for n, g in groups_dict.items():
+                groups[n] = _get_inventory_element(Group, g, n, defaults)
+
+            for g in groups.values():
+                g.groups = ParentGroups([groups[g] for g in g.groups])
 
         for device in nb_devices:
             serialized_device: Dict[Any, Any] = {}
@@ -261,5 +332,13 @@ class NetBoxInventory2:
             hosts[name] = _get_inventory_element(
                 Host, serialized_device, name, defaults
             )
+
+            groups_extracted = self._extract_device_groups(device)
+
+            for group in groups_extracted:
+                if group not in groups.keys():
+                    groups[group] = _get_inventory_element(Group, {}, group, defaults)
+
+            hosts[name].groups = ParentGroups([groups[g] for g in groups_extracted])
 
         return Inventory(hosts=hosts, groups=groups, defaults=defaults)
