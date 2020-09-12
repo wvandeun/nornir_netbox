@@ -1,0 +1,66 @@
+{
+    "count": 1,
+    "next": "http://localhost:8080/api/virtualization/virtual-machines/?limit=0&offset=2",
+    "previous": "http://localhost:8080/api/virtualization/virtual-machines/?limit=0&offset=0",
+    "results": [
+        {
+            "id": 2,
+            "name": "ca-panorama-1",
+            "status": {
+                "value": "active",
+                "label": "Active",
+                "id": 1
+            },
+            "site": null,
+            "cluster": {
+                "id": 3,
+                "url": "http://localhost:8000/api/virtualization/clusters/3/",
+                "name": "cluster-abc"
+            },
+            "role": {
+                "id": 4,
+                "url": "http://localhost:8000/api/dcim/device-roles/4/",
+                "name": "server",
+                "slug": "server"
+            },
+            "tenant": null,
+            "platform": {
+                "id": 4,
+                "url": "http://localhost:8000/api/dcim/platforms/4/",
+                "name": "PanOS",
+                "slug": "panos"
+            },
+            "primary_ip": {
+                "id": 18,
+                "url": "http://localhost:8000/api/ipam/ip-addresses/18/",
+                "family": 4,
+                "address": "55.1.0.3/27"
+            },
+            "primary_ip4": {
+                "id": 18,
+                "url": "http://localhost:8000/api/ipam/ip-addresses/18/",
+                "family": 4,
+                "address": "55.1.0.3/27"
+            },
+            "primary_ip6": null,
+            "vcpus": 8,
+            "memory": 8000,
+            "disk": 500,
+            "comments": "",
+            "local_context_data": {
+                "index": 12,
+                "testbed": "abcd"
+            },
+            "tags": [
+                "pano"
+            ],
+            "custom_fields": {},
+            "config_context": {
+                "index": 12,
+                "testbed": "abcd"
+            },
+            "created": "2020-09-06",
+            "last_updated": "2020-09-06T05:03:36.371611Z"
+        }
+    ]
+}
