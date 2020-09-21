@@ -183,6 +183,9 @@ class NetBoxInventory2:
         flatten_custom_fields: Assign custom fields directly to the host's data attribute
             (defaults to False)
         filter_parameters: Key-value pairs that allow you to filter the NetBox inventory.
+        include_vms: Get virtual machines from NetBox as well as devices.
+            (defaults to False)
+
     """
 
     def __init__(
@@ -192,6 +195,7 @@ class NetBoxInventory2:
         ssl_verify: Union[bool, str] = True,
         flatten_custom_fields: bool = False,
         filter_parameters: Optional[Dict[str, Any]] = None,
+        include_vms: bool = False,
         **kwargs: Any,
     ) -> None:
         filter_parameters = filter_parameters or {}
@@ -203,6 +207,7 @@ class NetBoxInventory2:
         self.nb_url = nb_url
         self.flatten_custom_fields = flatten_custom_fields
         self.filter_parameters = filter_parameters
+        self.include_vms = include_vms
 
         self.session = requests.Session()
         self.session.headers.update({"Authorization": f"Token {nb_token}"})
@@ -210,21 +215,20 @@ class NetBoxInventory2:
 
     def load(self) -> Inventory:
 
-        url = f"{self.nb_url}/api/dcim/devices/?limit=0"
         nb_devices: List[Dict[str, Any]] = []
 
-        while url:
-            r = self.session.get(url, params=self.filter_parameters)
+        nb_devices = self._get_resources(
+            url=f"{self.nb_url}/api/dcim/devices/?limit=0",
+            params=self.filter_parameters,
+        )
 
-            if not r.status_code == 200:
-                raise ValueError(
-                    f"Failed to get devices from NetBox instance {self.nb_url}"
+        if self.include_vms:
+            nb_devices.extend(
+                self._get_resources(
+                    url=f"{self.nb_url}/api/virtualization/virtual-machines/?limit=0",
+                    params=self.filter_parameters,
                 )
-
-            resp = r.json()
-            nb_devices.extend(resp.get("results"))
-
-            url = resp.get("next")
+            )
 
         hosts = Hosts()
         groups = Groups()
@@ -263,3 +267,22 @@ class NetBoxInventory2:
             )
 
         return Inventory(hosts=hosts, groups=groups, defaults=defaults)
+
+    def _get_resources(self, url: str, params: Dict[str, Any]) -> List[Dict[str, Any]]:
+
+        resources: List[Dict[str, Any]] = []
+
+        while url:
+            r = self.session.get(url, params=params)
+
+            if not r.status_code == 200:
+                raise ValueError(
+                    f"Failed to get data from NetBox instance {self.nb_url}"
+                )
+
+            resp = r.json()
+            resources.extend(resp.get("results"))
+
+            url = resp.get("next")
+
+        return resources

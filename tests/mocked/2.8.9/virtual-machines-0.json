@@ -1,0 +1,72 @@
+{
+    "count": 1,
+    "next": "http://localhost:8080/api/virtualization/virtual-machines/?limit=0&offset=1",
+    "previous": null,
+    "results": [
+        {
+            "id": 4,
+            "name": "ca-expedition-10",
+            "status": {
+                "value": "active",
+                "label": "Active",
+                "id": 1
+            },
+            "site": null,
+            "cluster": {
+                "id": 3,
+                "url": "http://localhost:8000/api/virtualization/clusters/3/",
+                "name": "cluster-abc"
+            },
+            "role": {
+                "id": 4,
+                "url": "http://localhost:8000/api/dcim/device-roles/4/",
+                "name": "server",
+                "slug": "server"
+            },
+            "tenant": null,
+            "platform": {
+                "id": 8,
+                "url": "http://localhost:8000/api/dcim/platforms/8/",
+                "name": "Expedition",
+                "slug": "expedition"
+            },
+            "primary_ip": {
+                "id": 6,
+                "url": "http://localhost:8000/api/ipam/ip-addresses/6/",
+                "family": 4,
+                "address": "2.2.2.2/24"
+            },
+            "primary_ip4": {
+                "id": 6,
+                "url": "http://localhost:8000/api/ipam/ip-addresses/6/",
+                "family": 4,
+                "address": "2.2.2.2/24"
+            },
+            "primary_ip6": null,
+            "vcpus": 12,
+            "memory": 16000,
+            "disk": 1000,
+            "comments": "",
+            "local_context_data": {
+                "transition_groups": [
+                    "ASA-5525",
+                    "ASA-5550",
+                    "ASA-5550-Internet"
+                ]
+            },
+            "tags": [
+                "temporary"
+            ],
+            "custom_fields": {},
+            "config_context": {
+                "transition_groups": [
+                    "ASA-5525",
+                    "ASA-5550",
+                    "ASA-5550-Internet"
+                ]
+            },
+            "created": "2020-09-06",
+            "last_updated": "2020-09-06T05:03:17.932973Z"
+        }
+    ]
+}
