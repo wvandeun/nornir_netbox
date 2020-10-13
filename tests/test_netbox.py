@@ -101,6 +101,15 @@ class TestNetBoxInventory2(TestNBInventory):
             expected = json.load(f)
         assert expected == inv.dict()
 
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_defaults_file(self, requests_mock, version):
+        inv = get_inv(requests_mock, self.plugin, False, version, defaults_file=f"{BASE_PATH}/data/defaults.yaml")
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected-defaults.json", "r"
+        ) as f:
+            expected = json.load(f)
+        assert expected == inv.dict()
+
     @pytest.mark.parametrize("version", ["2.8.9"])
     def test_inventory_use_platform_slug_include_vms(self, requests_mock, version):
         inv = get_inv(
@@ -117,3 +126,23 @@ class TestNetBoxInventory2(TestNBInventory):
         ) as f:
             expected = json.load(f)
         assert expected == inv.dict()
+
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_groups_file(self, requests_mock, version):
+        pass
+
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_defaults_and_groups_file(self, requests_mock, version):
+        pass
+
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_empty_defaults_file(self, requests_mock, version):
+        pass
+
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_empty_groups_file(self, requests_mock, version):
+        pass
+
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_empty_defaults_and_groups_file(self, requests_mock, version):
+        pass

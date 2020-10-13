@@ -1,75 +1,7 @@
 {
   "hosts": {
     "1-Core": {
-      "data": {
-        "id": 1,
-        "name": "1-Core",
-        "display_name": "1-Core",
-        "device_type": {
-          "id": 11,
-          "url": "http://localhost:8080/api/dcim/device-types/11/",
-          "manufacturer": {
-            "id": 3,
-            "url": "http://localhost:8080/api/dcim/manufacturers/3/",
-            "name": "Juniper",
-            "slug": "juniper"
-          },
-          "model": "MX480",
-          "slug": "mx480"
-        },
-        "device_role": {
-          "id": 1,
-          "url": "http://localhost:8080/api/dcim/device-roles/1/",
-          "name": "Router",
-          "slug": "rt"
-        },
-        "tenant": null,
-        "platform": "junos",
-        "serial": "",
-        "asset_tag": null,
-        "site": {
-          "id": 3,
-          "url": "http://localhost:8080/api/dcim/sites/3/",
-          "name": "Sunnyvale, CA",
-          "slug": "sunnyvale-ca"
-        },
-        "rack": null,
-        "position": null,
-        "face": null,
-        "parent_device": null,
-        "status": {
-          "value": 1,
-          "label": "Active"
-        },
-        "primary_ip": {
-          "id": 1,
-          "url": "http://localhost:8080/api/ipam/ip-addresses/1/",
-          "family": 4,
-          "address": "10.0.1.1/32"
-        },
-        "primary_ip4": {
-          "id": 1,
-          "url": "http://localhost:8080/api/ipam/ip-addresses/1/",
-          "family": 4,
-          "address": "10.0.1.1/32"
-        },
-        "primary_ip6": null,
-        "cluster": null,
-        "virtual_chassis": null,
-        "vc_position": null,
-        "vc_priority": null,
-        "comments": "",
-        "custom_fields": {
-        },
-        "created": "2018-07-12",
-        "last_updated": "2018-07-12T11:53:54.742412Z"
-      },
       "name": "1-Core",
-      "hostname": "10.0.1.1",
-      "platform": "junos",
-      "port": null,
-      "username": null,
-      "password": null,
       "connection_options": {
       },
       "groups": [
@@ -77,38 +9,42 @@
         "platform__junos",
         "manufacturer__juniper",
         "device_type__mx480"
-      ]
-    },
-    "2-Distribution": {
+      ],
       "data": {
-        "id": 2,
-        "name": "2-Distribution",
-        "display_name": "2-Distribution",
+        "id": 1,
+        "name": "1-Core",
+        "display_name": "1-Core",
         "device_type": {
-          "id": 9,
-          "url": "http://localhost:8080/api/dcim/device-types/9/",
+          "id": 1,
+          "url": "http://localhost:8001/api/dcim/device-types/1/",
           "manufacturer": {
-            "id": 3,
-            "url": "http://localhost:8080/api/dcim/manufacturers/3/",
+            "id": 1,
+            "url": "http://localhost:8001/api/dcim/manufacturers/1/",
             "name": "Juniper",
             "slug": "juniper"
           },
-          "model": "EX4550-32F",
-          "slug": "ex4550-32f"
+          "model": "MX480",
+          "slug": "mx480",
+          "display_name": "Juniper MX480"
         },
         "device_role": {
           "id": 1,
-          "url": "http://localhost:8080/api/dcim/device-roles/1/",
+          "url": "http://localhost:8001/api/dcim/device-roles/1/",
           "name": "Router",
           "slug": "rt"
         },
         "tenant": null,
-        "platform": null,
+        "platform": {
+          "id": 1,
+          "url": "http://localhost:8001/api/dcim/platforms/1/",
+          "name": "junos",
+          "slug": "junos"
+        },
         "serial": "",
         "asset_tag": null,
         "site": {
-          "id": 3,
-          "url": "http://localhost:8080/api/dcim/sites/3/",
+          "id": 1,
+          "url": "http://localhost:8001/api/dcim/sites/1/",
           "name": "Sunnyvale, CA",
           "slug": "sunnyvale-ca"
         },
@@ -117,18 +53,108 @@
         "face": null,
         "parent_device": null,
         "status": {
-          "value": 1,
-          "label": "Active"
+          "value": "active",
+          "label": "Active",
+          "id": 1
+        },
+        "primary_ip": {
+          "id": 1,
+          "url": "http://localhost:8001/api/ipam/ip-addresses/1/",
+          "family": 4,
+          "address": "10.0.1.1/32"
+        },
+        "primary_ip4": {
+          "id": 1,
+          "url": "http://localhost:8001/api/ipam/ip-addresses/1/",
+          "family": 4,
+          "address": "10.0.1.1/32"
+        },
+        "primary_ip6": null,
+        "cluster": null,
+        "virtual_chassis": null,
+        "vc_position": null,
+        "vc_priority": null,
+        "comments": "",
+        "local_context_data": null,
+        "tags": [],
+        "custom_fields": {
+        },
+        "config_context": {
+        },
+        "created": "2020-08-26",
+        "last_updated": "2020-08-26T22:03:36.495182Z"
+      },
+      "hostname": "10.0.1.1",
+      "port": null,
+      "username": "test",
+      "password": "password",
+      "platform": "junos"
+    },
+    "2-Distribution": {
+      "name": "2-Distribution",
+      "connection_options": {
+      },
+      "groups": [
+        "site__sunnyvale-ca",
+        "manufacturer__juniper",
+        "device_type__ex4550-32f"
+      ],
+      "data": {
+        "id": 2,
+        "name": "2-Distribution",
+        "display_name": "2-Distribution",
+        "device_type": {
+          "id": 2,
+          "url": "http://localhost:8001/api/dcim/device-types/2/",
+          "manufacturer": {
+            "id": 1,
+            "url": "http://localhost:8001/api/dcim/manufacturers/1/",
+            "name": "Juniper",
+            "slug": "juniper"
+          },
+          "model": "EX4550-32F",
+          "slug": "ex4550-32f",
+          "display_name": "Juniper EX4550-32F"
+        },
+        "device_role": {
+          "id": 1,
+          "url": "http://localhost:8001/api/dcim/device-roles/1/",
+          "name": "Router",
+          "slug": "rt"
+        },
+        "tenant": null,
+        "platform": {
+          "id": 1,
+          "url": "http://localhost:8001/api/dcim/platforms/1/",
+          "name": "junos",
+          "slug": "junos"
+        },
+        "serial": "",
+        "asset_tag": null,
+        "site": {
+          "id": 1,
+          "url": "http://localhost:8001/api/dcim/sites/1/",
+          "name": "Sunnyvale, CA",
+          "slug": "sunnyvale-ca"
+        },
+        "rack": null,
+        "position": null,
+        "face": null,
+        "parent_device": null,
+        "status": {
+          "value": "active",
+          "label": "Active",
+          "id": 1
         },
         "primary_ip": {
           "id": 2,
-          "url": "http://localhost:8080/api/ipam/ip-addresses/2/",
+          "url": "http://localhost:8001/api/ipam/ip-addresses/2/",
           "family": 4,
           "address": "172.16.2.1/32"
         },
         "primary_ip4": {
           "id": 2,
-          "url": "http://localhost:8080/api/ipam/ip-addresses/2/",
+          "url": "http://localhost:8001/api/ipam/ip-addresses/2/",
           "family": 4,
           "address": "172.16.2.1/32"
         },
@@ -138,55 +164,61 @@
         "vc_position": null,
         "vc_priority": null,
         "comments": "",
+        "local_context_data": null,
+        "tags": [],
         "custom_fields": {
         },
-        "created": "2018-07-12",
-        "last_updated": "2018-07-12T11:53:54.802934Z"
+        "config_context": {
+        },
+        "created": "2020-08-26",
+        "last_updated": "2020-08-26T22:03:18.198404Z"
       },
-      "name": "2-Distribution",
       "hostname": "172.16.2.1",
-      "platform": null,
       "port": null,
-      "username": null,
-      "password": null,
+      "username": "test",
+      "password": "password",
+      "platform": "junos"
+    },
+    "3-Access": {
+      "name": "3-Access",
       "connection_options": {
       },
       "groups": [
-        "site__sunnyvale-ca",
-        "manufacturer__juniper",
-        "device_type__ex4550-32f"
-      ]
-    },
-    "3-Access": {
+        "site__san-jose-ca",
+        "platform__ios",
+        "manufacturer__cisco",
+        "device_type__3650-48tq-l"
+      ],
       "data": {
         "id": 3,
         "name": "3-Access",
         "display_name": "3-Access",
         "device_type": {
-          "id": 2,
-          "url": "http://localhost:8080/api/dcim/device-types/2/",
+          "id": 3,
+          "url": "http://localhost:8001/api/dcim/device-types/3/",
           "manufacturer": {
             "id": 2,
-            "url": "http://localhost:8080/api/dcim/manufacturers/2/",
+            "url": "http://localhost:8001/api/dcim/manufacturers/2/",
             "name": "Cisco",
             "slug": "cisco"
           },
           "model": "3650-48TQ-L",
-          "slug": "3650-48tq-l"
+          "slug": "3650-48tq-l",
+          "display_name": "Cisco 3650-48TQ-L"
         },
         "device_role": {
           "id": 2,
-          "url": "http://localhost:8080/api/dcim/device-roles/2/",
+          "url": "http://localhost:8001/api/dcim/device-roles/2/",
           "name": "Switch",
           "slug": "sw"
         },
         "tenant": null,
-        "platform": "ios",
+        "platform": null,
         "serial": "",
         "asset_tag": null,
         "site": {
           "id": 2,
-          "url": "http://localhost:8080/api/dcim/sites/2/",
+          "url": "http://localhost:8001/api/dcim/sites/2/",
           "name": "San Jose, CA",
           "slug": "san-jose-ca"
         },
@@ -195,18 +227,19 @@
         "face": null,
         "parent_device": null,
         "status": {
-          "value": 1,
-          "label": "Active"
+          "value": "active",
+          "label": "Active",
+          "id": 1
         },
         "primary_ip": {
           "id": 3,
-          "url": "http://localhost:8080/api/ipam/ip-addresses/3/",
+          "url": "http://localhost:8001/api/ipam/ip-addresses/3/",
           "family": 4,
           "address": "192.168.3.1/32"
         },
         "primary_ip4": {
           "id": 3,
-          "url": "http://localhost:8080/api/ipam/ip-addresses/3/",
+          "url": "http://localhost:8001/api/ipam/ip-addresses/3/",
           "family": 4,
           "address": "192.168.3.1/32"
         },
@@ -216,57 +249,66 @@
         "vc_position": null,
         "vc_priority": null,
         "comments": "",
+        "local_context_data": null,
+        "tags": [],
         "custom_fields": {
-          "user_defined": 1
         },
-        "created": "2018-07-12",
-        "last_updated": "2018-07-12T11:53:54.866133Z"
+        "config_context": {
+        },
+        "created": "2020-08-26",
+        "last_updated": "2020-08-26T22:04:51.483901Z"
       },
-      "name": "3-Access",
       "hostname": "192.168.3.1",
-      "platform": "ios",
       "port": null,
-      "username": null,
-      "password": null,
+      "username": "test",
+      "password": "password",
+      "platform": null
+    },
+    "4": {
+      "name": "4",
       "connection_options": {
       },
       "groups": [
-        "site__san-jose-ca",
-        "platform__ios",
-        "manufacturer__cisco",
-        "device_type__3650-48tq-l"
-      ]
-    },
-    "4": {
+        "site__sunnyvale-ca",
+        "platform__junos",
+        "manufacturer__juniper",
+        "device_type__mx480"
+      ],
       "data": {
         "id": 4,
         "name": null,
         "display_name": "MX480",
         "device_type": {
-          "id": 11,
-          "url": "http://localhost:8080/api/dcim/device-types/11/",
+          "id": 1,
+          "url": "http://localhost:8001/api/dcim/device-types/1/",
           "manufacturer": {
-            "id": 3,
-            "url": "http://localhost:8080/api/dcim/manufacturers/3/",
+            "id": 1,
+            "url": "http://localhost:8001/api/dcim/manufacturers/1/",
             "name": "Juniper",
             "slug": "juniper"
           },
           "model": "MX480",
-          "slug": "mx480"
+          "slug": "mx480",
+          "display_name": "Juniper MX480"
         },
         "device_role": {
           "id": 1,
-          "url": "http://localhost:8080/api/dcim/device-roles/1/",
+          "url": "http://localhost:8001/api/dcim/device-roles/1/",
           "name": "Router",
           "slug": "rt"
         },
         "tenant": null,
-        "platform": "junos",
+        "platform": {
+          "id": 1,
+          "url": "http://localhost:8001/api/dcim/platforms/1/",
+          "name": "junos",
+          "slug": "junos"
+        },
         "serial": "",
         "asset_tag": null,
         "site": {
-          "id": 3,
-          "url": "http://localhost:8080/api/dcim/sites/3/",
+          "id": 1,
+          "url": "http://localhost:8001/api/dcim/sites/1/",
           "name": "Sunnyvale, CA",
           "slug": "sunnyvale-ca"
         },
@@ -275,18 +317,19 @@
         "face": null,
         "parent_device": null,
         "status": {
-          "value": 1,
-          "label": "Active"
+          "value": "active",
+          "label": "Active",
+          "id": 1
         },
         "primary_ip": {
           "id": 4,
-          "url": "http://localhost:8080/api/ipam/ip-addresses/4/",
+          "url": "http://localhost:8001/api/ipam/ip-addresses/4/",
           "family": 4,
           "address": "10.0.1.4/32"
         },
         "primary_ip4": {
-          "id": 1,
-          "url": "http://localhost:8080/api/ipam/ip-addresses/4/",
+          "id": 4,
+          "url": "http://localhost:8001/api/ipam/ip-addresses/4/",
           "family": 4,
           "address": "10.0.1.4/32"
         },
@@ -296,25 +339,20 @@
         "vc_position": null,
         "vc_priority": null,
         "comments": "",
+        "local_context_data": null,
+        "tags": [],
         "custom_fields": {
         },
-        "created": "2018-07-12",
-        "last_updated": "2018-07-12T11:53:54.742412Z"
+        "config_context": {
+        },
+        "created": "2020-08-26",
+        "last_updated": "2020-08-26T22:06:15.624680Z"
       },
-      "name": "4",
       "hostname": "10.0.1.4",
-      "platform": "junos",
       "port": null,
-      "username": null,
-      "password": null,
-      "connection_options": {
-      },
-      "groups": [
-        "site__sunnyvale-ca",
-        "platform__junos",
-        "manufacturer__juniper",
-        "device_type__mx480"
-      ]
+      "username": "test",
+      "password": "password",
+      "platform": "junos"
     }
   },
   "groups": {
@@ -327,8 +365,8 @@
       },
       "hostname": null,
       "port": null,
-      "username": null,
-      "password": null,
+      "username": "test",
+      "password": "password",
       "platform": null
     },
     "platform__junos": {
@@ -340,8 +378,8 @@
       },
       "hostname": null,
       "port": null,
-      "username": null,
-      "password": null,
+      "username": "test",
+      "password": "password",
       "platform": null
     },
     "manufacturer__juniper": {
@@ -353,8 +391,8 @@
       },
       "hostname": null,
       "port": null,
-      "username": null,
-      "password": null,
+      "username": "test",
+      "password": "password",
       "platform": null
     },
     "device_type__mx480": {
@@ -366,8 +404,8 @@
       },
       "hostname": null,
       "port": null,
-      "username": null,
-      "password": null,
+      "username": "test",
+      "password": "password",
       "platform": null
     },
     "device_type__ex4550-32f": {
@@ -379,8 +417,8 @@
       },
       "hostname": null,
       "port": null,
-      "username": null,
-      "password": null,
+      "username": "test",
+      "password": "password",
       "platform": null
     },
     "site__san-jose-ca": {
@@ -392,8 +430,8 @@
       },
       "hostname": null,
       "port": null,
-      "username": null,
-      "password": null,
+      "username": "test",
+      "password": "password",
       "platform": null
     },
     "platform__ios": {
@@ -405,8 +443,8 @@
       },
       "hostname": null,
       "port": null,
-      "username": null,
-      "password": null,
+      "username": "test",
+      "password": "password",
       "platform": null
     },
     "manufacturer__cisco": {
@@ -418,8 +456,8 @@
       },
       "hostname": null,
       "port": null,
-      "username": null,
-      "password": null,
+      "username": "test",
+      "password": "password",
       "platform": null
     },
     "device_type__3650-48tq-l": {
@@ -431,20 +469,21 @@
       },
       "hostname": null,
       "port": null,
-      "username": null,
-      "password": null,
+      "username": "test",
+      "password": "password",
       "platform": null
     }
   },
   "defaults": {
-    "port": null,
-    "hostname": null,
-    "username": null,
-    "password": null,
-    "platform": null,
     "data": {
+      "domain": "acme.local"
     },
     "connection_options": {
-    }
+    },
+    "hostname": null,
+    "port": null,
+    "username": "test",
+    "password": "password",
+    "platform": null
   }
 }
