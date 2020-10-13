@@ -127,6 +127,15 @@ class TestNetBoxInventory2(BaseTestInventory):
             expected = json.load(f)
         assert expected == inv.dict()
 
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_defaults_file(self, requests_mock, version):
+        inv = get_inv(requests_mock, self.plugin, False, version, defaults_file=f"{BASE_PATH}/data/defaults.yaml")
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected-defaults.json", "r"
+        ) as f:
+            expected = json.load(f)
+        assert expected == inv.dict()
+
     @pytest.mark.parametrize("version", ["2.8.9"])
     def test_inventory_use_platform_slug_include_vms(
         self, requests_mock: Mocker, version: str
@@ -160,6 +169,10 @@ class TestNetBoxInventory2(BaseTestInventory):
             expected = json.load(f)
         assert expected == inv.dict()
 
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_groups_file(self, requests_mock, version):
+        pass
+
     @pytest.mark.parametrize("version", ["2.8.9"])
     def test_inventory_multiple_platform_sources_raises_exception(
         self, requests_mock: Mocker, version: str
@@ -174,3 +187,19 @@ class TestNetBoxInventory2(BaseTestInventory):
                 use_platform_napalm_driver=True,
             )
             assert inv
+
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_defaults_and_groups_file(self, requests_mock, version):
+        pass
+
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_empty_defaults_file(self, requests_mock, version):
+        pass
+
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_empty_groups_file(self, requests_mock, version):
+        pass
+
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_empty_defaults_and_groups_file(self, requests_mock, version):
+        pass
