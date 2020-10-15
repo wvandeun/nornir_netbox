@@ -247,7 +247,7 @@ class NetBoxInventory2:
             {"name": "site", "path": ["site", "slug"]},
             {"name": "platform", "path": ["platform"]}, # older netbox versions
             {"name": "platform", "path": ["platform", "slug"]},
-            {"name": "role", "path": ["role", "slug"]},
+            {"name": "device_role", "path": ["device_role", "slug"]},
             {"name": "manufacturer", "path": ["device_type", "manufacturer", "slug"]},
             {"name": "device_type", "path": ["device_type", "slug"]}
         ] 
