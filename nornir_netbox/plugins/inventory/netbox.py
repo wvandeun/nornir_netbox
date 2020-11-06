@@ -185,7 +185,8 @@ class NetBoxInventory2:
         filter_parameters: Key-value pairs that allow you to filter the NetBox inventory.
         include_vms: Get virtual machines from NetBox as well as devices.
             (defaults to False)
-
+        use_platform_slug: Use the NetBox platform slug for the platform attribute of a Host
+            (defaults to False)
     """
 
     def __init__(
@@ -196,6 +197,7 @@ class NetBoxInventory2:
         flatten_custom_fields: bool = False,
         filter_parameters: Optional[Dict[str, Any]] = None,
         include_vms: bool = False,
+        use_platform_slug: bool = False,
         **kwargs: Any,
     ) -> None:
         filter_parameters = filter_parameters or {}
@@ -208,6 +210,7 @@ class NetBoxInventory2:
         self.flatten_custom_fields = flatten_custom_fields
         self.filter_parameters = filter_parameters
         self.include_vms = include_vms
+        self.use_platform_slug = use_platform_slug
 
         self.session = requests.Session()
         self.session.headers.update({"Authorization": f"Token {nb_token}"})
@@ -251,11 +254,13 @@ class NetBoxInventory2:
                     hostname = device["name"]
             serialized_device["hostname"] = hostname
 
-            platform = (
-                device["platform"]["name"]
-                if isinstance(device["platform"], dict)
-                else device["platform"]
-            )
+            if isinstance(device["platform"], dict) and self.use_platform_slug:
+                platform = device["platform"].get("slug")
+            elif isinstance(device["platform"], dict):
+                platform = device["platform"].get("name")
+            else:
+                platform = device["platform"]
+
             serialized_device["platform"] = platform
 
             name = serialized_device["data"].get("name") or str(

@@ -75,7 +75,7 @@
         "port": null,
         "username": null,
         "password": null,
-        "platform": "juniper_junos"
+        "platform": "junos"
       },
       "1-Core": {
         "name": "1-Core",
@@ -152,7 +152,7 @@
         "port": null,
         "username": null,
         "password": null,
-        "platform": "juniper_junos"
+        "platform": "junos"
       },
       "2-Distribution": {
         "name": "2-Distribution",
@@ -303,7 +303,7 @@
         "port": null,
         "username": null,
         "password": null,
-        "platform": "cisco_ios"
+        "platform": "ios"
       },
       "ca-expedition-10": {
         "name": "ca-expedition-10",
@@ -378,7 +378,7 @@
         "port": null,
         "username": null,
         "password": null,
-        "platform": "Expedition"
+        "platform": "expedition"
       },
       "ca-panorama-1": {
         "name": "ca-panorama-1",
@@ -447,7 +447,7 @@
         "port": null,
         "username": null,
         "password": null,
-        "platform": "PanOS"
+        "platform": "panos"
       },
       "tx-pa100-fw1": {
         "name": "tx-pa100-fw1",
@@ -525,7 +525,7 @@
         "port": null,
         "username": null,
         "password": null,
-        "platform": "PanOS"
+        "platform": "panos"
       },
       "tx-scout-1": {
         "name": "tx-scout-1",
@@ -594,7 +594,7 @@
         "port": null,
         "username": null,
         "password": null,
-        "platform": "Scout"
+        "platform": "scout"
       }
     },
     "groups": {},
