@@ -29,7 +29,7 @@
       "platform": {
         "id": 2,
         "url": "http://localhost:8080/api/dcim/platforms/2/",
-        "name": "ios",
+        "name": "cisco_ios",
         "slug": "ios"
       },
       "serial": "",
@@ -96,7 +96,7 @@
       "platform": {
         "id": 1,
         "url": "http://localhost:8080/api/dcim/platforms/1/",
-        "name": "junos",
+        "name": "juniper_junos",
         "slug": "junos"
       },
       "serial": "",

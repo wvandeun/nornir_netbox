@@ -88,3 +88,32 @@ class TestNetBoxInventory2(TestNBInventory):
         ) as f:
             expected = json.load(f)
         assert expected == inv.dict()
+
+    @pytest.mark.parametrize("version", ["2.8.9"])
+    def test_inventory_use_platform_slug(self, requests_mock, version):
+        inv = get_inv(
+            requests_mock, self.plugin, False, version, use_platform_slug=True
+        )
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected_use_platform_slug.json",
+            "r",
+        ) as f:
+            expected = json.load(f)
+        assert expected == inv.dict()
+
+    @pytest.mark.parametrize("version", ["2.8.9"])
+    def test_inventory_use_platform_slug_include_vms(self, requests_mock, version):
+        inv = get_inv(
+            requests_mock,
+            self.plugin,
+            False,
+            version,
+            use_platform_slug=True,
+            include_vms=True,
+        )
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/vms-expected_use_platform_slug.json",
+            "r",
+        ) as f:
+            expected = json.load(f)
+        assert expected == inv.dict()

@@ -75,6 +75,39 @@ nr = InitNornir(
 )
 ```
 
+### NBInventory arguments
+
+```
+Arguments:
+    nb_url: NetBox url, defaults to http://localhost:8080.
+        You can also use env variable NB_URL
+    nb_token: NetBox token. You can also use env variable NB_TOKEN
+    use_slugs: Whether to use slugs or not
+    ssl_verify: Enable/disable certificate validation or provide path to CA bundle file
+    flatten_custom_fields: Whether to assign custom fields directly to the host or not
+    filter_parameters: Key-value pairs to filter down hosts
+```
+
+### NetBoxInventory2 arguments
+
+```
+Environment Variables:
+    * ``NB_URL``: Corresponds to nb_url argument
+    * ``NB_TOKEN``: Corresponds to nb_token argument
+Arguments:
+    nb_url: NetBox url (defaults to ``http://localhost:8080``)
+    nb_token: NetBox API token
+    ssl_verify: Enable/disable certificate validation or provide path to CA bundle file
+        (defaults to True)
+    flatten_custom_fields: Assign custom fields directly to the host's data attribute
+        (defaults to False)
+    filter_parameters: Key-value pairs that allow you to filter the NetBox inventory.
+    include_vms: Get virtual machines from NetBox as well as devices.
+        (defaults to False)
+    use_platform_slug: Use the NetBox platform slug for the platform attribute of a Host
+        (defaults to False)
+```
+
 # Useful Links
 
 - [Nornir](https://github.com/nornir-automation/nornir)
