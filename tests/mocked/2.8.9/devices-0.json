@@ -29,7 +29,7 @@
       "platform": {
         "id": 1,
         "url": "http://localhost:8080/api/dcim/platforms/1/",
-        "name": "junos",
+        "name": "juniper_junos",
         "slug": "junos"
       },
       "serial": "",
