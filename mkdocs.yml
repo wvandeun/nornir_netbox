@@ -1,0 +1,9 @@
+site_name: nornir_netbox
+extra_css:
+    - custom.css
+theme:
+    name: readthedocs
+    navigation_depth: 3
+nav:
+  - Introduction: index.md
+  - Usage: usage.md
