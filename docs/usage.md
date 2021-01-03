@@ -206,8 +206,8 @@ Wether or not you need to enable this option depends on how you defined your pla
 
 Enable this option to also create Nornir Hosts for virtual machines stored in the NetBox database.
 
-| name     | include\_virtual\_machines |
-|----------|----------------------------|
-| type     | bool                       |
-| default  | False                      |
-| required | False                      |
+| name     | include\_vms |
+|----------|--------------|
+| type     | bool         |
+| default  | False        |
+| required | False        |
