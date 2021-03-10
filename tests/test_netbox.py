@@ -148,9 +148,7 @@ class TestNetBoxInventory2(BaseTestInventory):
 
     @pytest.mark.parametrize("version", ["2.8.9"])
     def test_inventory_use_napalm(self, requests_mock, version):
-        inv = get_inv(
-            requests_mock, self.plugin, False, version, use_napalm=True
-        )
+        inv = get_inv(requests_mock, self.plugin, False, version, use_napalm=True)
         with open(
             f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected_use_napalm.json",
             "r",
