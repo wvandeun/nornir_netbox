@@ -55,6 +55,7 @@ def get_inv(
     **kwargs: Any,
 ) -> Inventory:
     _create_mock(requests_mock, pagination, version, "dcim", "devices")
+    _create_mock(requests_mock, False, version, "dcim", "platforms")
     if kwargs.get("include_vms", None):
         _create_mock(
             requests_mock, pagination, version, "virtualization", "virtual-machines"
@@ -140,6 +141,18 @@ class TestNetBoxInventory2(BaseTestInventory):
         )
         with open(
             f"{BASE_PATH}/{self.plugin.__name__}/{version}/vms-expected_use_platform_slug.json",
+            "r",
+        ) as f:
+            expected = json.load(f)
+        assert expected == inv.dict()
+
+    @pytest.mark.parametrize("version", ["2.8.9"])
+    def test_inventory_use_napalm(self, requests_mock, version):
+        inv = get_inv(
+            requests_mock, self.plugin, False, version, use_napalm=True
+        )
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected_use_napalm.json",
             "r",
         ) as f:
             expected = json.load(f)
