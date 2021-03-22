@@ -222,10 +222,11 @@ class NetBoxInventory2:
 
     def load(self) -> Inventory:
 
-        platforms: List[Dict[str, Any]] = []
-        platforms = self._get_resources(
-            url=f"{self.nb_url}/api/dcim/platforms/?limit=0", params={}
-        )
+        if self.use_napalm:
+            platforms: List[Dict[str, Any]] = []
+            platforms = self._get_resources(
+                url=f"{self.nb_url}/api/dcim/platforms/?limit=0", params={}
+            )
 
         nb_devices: List[Dict[str, Any]] = []
 
