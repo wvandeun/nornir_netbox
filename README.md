@@ -107,9 +107,11 @@ Arguments:
         (defaults to False)
     use_platform_slug: Use the NetBox platform slug for the platform attribute of a Host
         (defaults to False)
-    use_napalm: Use the Netbox platform napalm driver setting for the platform attribute
-        of a Host (defaults to False)
+    use_platform_napalm_driver: Use the Netbox platform napalm driver setting for the platform attribute of a Host
+        (defaults to False)
 ```
+
+Only one of use_platform_slug and use_platform_napalm_driver can be set to true.
 
 # Useful Links
 

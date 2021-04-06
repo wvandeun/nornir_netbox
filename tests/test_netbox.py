@@ -147,11 +147,27 @@ class TestNetBoxInventory2(BaseTestInventory):
         assert expected == inv.dict()
 
     @pytest.mark.parametrize("version", ["2.8.9"])
-    def test_inventory_use_napalm(self, requests_mock, version):
-        inv = get_inv(requests_mock, self.plugin, False, version, use_napalm=True)
+    def test_inventory_use_platform_napalm_driver(self, requests_mock, version):
+        inv = get_inv(
+            requests_mock, self.plugin, False, version, use_platform_napalm_driver=True
+        )
         with open(
-            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected_use_napalm.json",
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected_use_platform_napalm_driver.json",
             "r",
         ) as f:
             expected = json.load(f)
         assert expected == inv.dict()
+
+    @pytest.mark.parametrize("version", ["2.8.9"])
+    def test_inventory_multiple_platform_sources_raises_exception(
+        self, requests_mock, version
+    ):
+        with pytest.raises(ValueError) as e_info:
+            inv = get_inv(
+                requests_mock,
+                self.plugin,
+                False,
+                version,
+                use_platform_slug=True,
+                use_platform_napalm_driver=True,
+            )

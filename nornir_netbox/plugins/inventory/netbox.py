@@ -187,8 +187,9 @@ class NetBoxInventory2:
             (defaults to False)
         use_platform_slug: Use the NetBox platform slug for the platform attribute of a Host
             (defaults to False)
-        use_napalm: Use the Netbox platform napalm driver setting for the platform attribute
-            of a Host (defaults to False)
+        use_platform_napalm_driver: Use the Netbox platform napalm driver setting for the
+            platform attribute of a Host
+            (defaults to False)
     """
 
     def __init__(
@@ -200,7 +201,7 @@ class NetBoxInventory2:
         filter_parameters: Optional[Dict[str, Any]] = None,
         include_vms: bool = False,
         use_platform_slug: bool = False,
-        use_napalm: bool = False,
+        use_platform_napalm_driver: bool = False,
         **kwargs: Any,
     ) -> None:
         filter_parameters = filter_parameters or {}
@@ -214,15 +215,20 @@ class NetBoxInventory2:
         self.filter_parameters = filter_parameters
         self.include_vms = include_vms
         self.use_platform_slug = use_platform_slug
-        self.use_napalm = use_napalm
+        self.use_platform_napalm_driver = use_platform_napalm_driver
 
         self.session = requests.Session()
         self.session.headers.update({"Authorization": f"Token {nb_token}"})
         self.session.verify = ssl_verify
 
+        if self.use_platform_slug and self.use_platform_napalm_driver:
+            raise ValueError(
+                "Only one of use_platform_slug and use_platform_napalm_driver can be set to true"
+            )
+
     def load(self) -> Inventory:
 
-        if self.use_napalm:
+        if self.use_platform_napalm_driver:
             platforms: List[Dict[str, Any]] = []
             platforms = self._get_resources(
                 url=f"{self.nb_url}/api/dcim/platforms/?limit=0", params={}
@@ -266,9 +272,13 @@ class NetBoxInventory2:
 
             if isinstance(device["platform"], dict) and self.use_platform_slug:
                 platform = device["platform"].get("slug")
-            elif isinstance(device["platform"], dict) and self.use_napalm:
+            elif (
+                isinstance(device["platform"], dict) and self.use_platform_napalm_driver
+            ):
                 platform = [
-                    d for d in platforms if device["platform"]["slug"] == d["slug"]
+                    platform
+                    for platform in platforms
+                    if device["platform"]["slug"] == platform["slug"]
                 ][0]["napalm_driver"]
             elif isinstance(device["platform"], dict):
                 platform = device["platform"].get("name")
