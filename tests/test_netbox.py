@@ -1,18 +1,31 @@
 import json
 import os
 
+from typing import Any
+from typing import Type
+from typing import Union
+
+from nornir.core.inventory import Inventory
 from nornir_netbox.plugins.inventory.netbox import NBInventory
 from nornir_netbox.plugins.inventory.netbox import NetBoxInventory2
 
 # We need import below to load fixtures
 import pytest  # noqa
 
+from requests_mock import Mocker
+
 
 BASE_PATH = os.path.dirname(__file__)
 VERSIONS = ["2.3.5", "2.8.9"]
 
 
-def _create_mock(requests_mock, pagination, version, application, resource, **kwargs):
+def _create_mock(
+    requests_mock: Mocker,
+    pagination: bool,
+    version: str,
+    application: str,
+    resource: str,
+) -> None:
     """initialises mock objects for testcase"""
     if not pagination:
         with open(f"{BASE_PATH}/mocked/{version}/{resource}.json", "r") as f:
@@ -34,22 +47,26 @@ def _create_mock(requests_mock, pagination, version, application, resource, **kw
                 )
 
 
-def get_inv(requests_mock, plugin, pagination, version, **kwargs):
-
+def get_inv(
+    requests_mock: Mocker,
+    plugin: Type[Union[NBInventory, NetBoxInventory2]],
+    pagination: bool,
+    version: str,
+    **kwargs: Any,
+) -> Inventory:
     _create_mock(requests_mock, pagination, version, "dcim", "devices")
     if kwargs.get("include_vms", None):
         _create_mock(
             requests_mock, pagination, version, "virtualization", "virtual-machines"
         )
-
     return plugin(**kwargs).load()
 
 
-class TestNBInventory(object):
-    plugin = NBInventory
+class BaseTestInventory(object):
+    plugin: Type[Union[NBInventory, NetBoxInventory2]]
 
     @pytest.mark.parametrize("version", VERSIONS)
-    def test_inventory(self, requests_mock, version):
+    def test_inventory(self, requests_mock: Mocker, version: str) -> None:
         inv = get_inv(requests_mock, self.plugin, False, version)
         with open(
             f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected.json", "r"
@@ -58,7 +75,7 @@ class TestNBInventory(object):
         assert expected == inv.dict()
 
     @pytest.mark.parametrize("version", VERSIONS)
-    def test_inventory_pagination(self, requests_mock, version):
+    def test_inventory_pagination(self, requests_mock: Mocker, version: str) -> None:
         inv = get_inv(requests_mock, self.plugin, True, version)
         with open(
             f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected.json", "r"
@@ -67,12 +84,16 @@ class TestNBInventory(object):
         assert expected == inv.dict()
 
 
-class TestNetBoxInventory2(TestNBInventory):
+class TestNBInventory(BaseTestInventory):
+    plugin = NBInventory
+
+
+class TestNetBoxInventory2(BaseTestInventory):
     plugin = NetBoxInventory2
 
     # only on NetBoxInventory2 and NetBox 2.8.9
     @pytest.mark.parametrize("version", ["2.8.9"])
-    def test_inventory_include_vms(self, requests_mock, version):
+    def test_inventory_include_vms(self, requests_mock: Mocker, version: str) -> None:
         inv = get_inv(requests_mock, self.plugin, False, version, include_vms=True)
         with open(
             f"{BASE_PATH}/{self.plugin.__name__}/{version}/vms-expected.json", "r"
@@ -81,7 +102,9 @@ class TestNetBoxInventory2(TestNBInventory):
         assert expected == inv.dict()
 
     @pytest.mark.parametrize("version", ["2.8.9"])
-    def test_inventory_include_vms_pagination(self, requests_mock, version):
+    def test_inventory_include_vms_pagination(
+        self, requests_mock: Mocker, version: str
+    ) -> None:
         inv = get_inv(requests_mock, self.plugin, True, version, include_vms=True)
         with open(
             f"{BASE_PATH}/{self.plugin.__name__}/{version}/vms-expected.json", "r"
@@ -90,7 +113,9 @@ class TestNetBoxInventory2(TestNBInventory):
         assert expected == inv.dict()
 
     @pytest.mark.parametrize("version", ["2.8.9"])
-    def test_inventory_use_platform_slug(self, requests_mock, version):
+    def test_inventory_use_platform_slug(
+        self, requests_mock: Mocker, version: str
+    ) -> None:
         inv = get_inv(
             requests_mock, self.plugin, False, version, use_platform_slug=True
         )
@@ -102,7 +127,9 @@ class TestNetBoxInventory2(TestNBInventory):
         assert expected == inv.dict()
 
     @pytest.mark.parametrize("version", ["2.8.9"])
-    def test_inventory_use_platform_slug_include_vms(self, requests_mock, version):
+    def test_inventory_use_platform_slug_include_vms(
+        self, requests_mock: Mocker, version: str
+    ) -> None:
         inv = get_inv(
             requests_mock,
             self.plugin,
