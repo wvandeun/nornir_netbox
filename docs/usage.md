@@ -1,9 +1,9 @@
-# Using NetBox as an inventory source 
+# Using NetBox as an inventory source
 
 Before we can use NetBox as an inventory source, we need to know the following 2 properties:
 
 * The URL of your NetBox instance
-* A NetBox [API token](https://netbox.readthedocs.io/en/stable/rest-api/authentication/#tokens) 
+* A NetBox [API token](https://netbox.readthedocs.io/en/stable/rest-api/authentication/#tokens)
 
 You can setup Nornir to leverage NetBoxInvetory2 as the inventory source in 2 ways:
 
@@ -67,7 +67,7 @@ NetBox instance URL.
 | default              | http://localhost:8000 |
 | required             | True                  |
 | environment variable | NB\_URL               |
- 
+
 ### NetBox API token
 
 NetBox API token.
@@ -93,7 +93,7 @@ Alternatively accepts a path the CA bundle file to use for certificate validatio
 
 ### Flatten custom fields
 
-This option allows you to "flatten" custom fields. By default a custom fields for a NetBox device or VM, will be stored in the custom_fields attribute of the data attribute of a Nornir host. 
+This option allows you to "flatten" custom fields. By default a custom fields for a NetBox device or VM, will be stored in the custom_fields attribute of the data attribute of a Nornir host.
 
 Enabling `flatten_custom_fields` will modify that behaviour, so that each custom field is stored direclty as an attibute of the dat attribute of a Host, which makes working with custom fields a little bit easier.
 
@@ -128,7 +128,7 @@ Example with `flatten_custom_fields` enabled
 
 ### Filter parameters
 
-Filter parameters allow you to filter the inventory data returned by thet NetBox API. 
+Filter parameters allow you to filter the inventory data returned by thet NetBox API.
 
 The NetBox API allows you to filter the returned data by attaching one or more query parameters to the request url. More information can be found in [NetBox's documentation](https://netbox.readthedocs.io/en/stable/rest-api/filtering/).
 
@@ -190,17 +190,31 @@ nr = InitNornir(
 
 ### Use platform slugs
 
-NetBox device/vm's have a platform attribute that indicates the type of operating system that is running on the device. This attribut is directly mappend to the Nornir Host's platform attribute, so that connection plugins understand which driver needs to be used to connect to the device.
+NetBox device/vm's have a platform attribute that indicates the type of operating system that is running on the device. This attribute is directly mappend to the Nornir Host's platform attribute, so that connection plugins understand which driver needs to be used to connect to the device.
 
 By default the name attribute of a NetBox platform is mapped to the Nornir Host's platform. Use platform slugs allows you to use the slug of the NetBox platform instead.
 
-Wether or not you need to enable this option depends on how you defined your platforms in NetBox.
+Whether or not you need to enable this option depends on how you defined your platforms in NetBox. Only one of use_platform_slugs and use_platform_napalm_driver can be set as true.
 
 | name        | use\_platform\_slugs                                                            |
 |-------------|---------------------------------------------------------------------------------|
 | type        | bool                                                                            |
 | default     | False                                                                           |
 | required    | False                                                                           |
+
+
+### Use platform NAPALM driver
+
+Use platform NAPLAM driver works like use platform slugs, but uses the NAPLAM driver attibuted from the NetBox platform instead.
+
+Whether or not you need to enable this option depends on how you defined your platforms in NetBox. Only one of use_platform_slugs and use_platform_napalm_driver can be set as true.
+
+| name        | use\_platform\_napalm\_driver                                                            |
+|-------------|---------------------------------------------------------------------------------|
+| type        | bool                                                                            |
+| default     | False                                                                           |
+| required    | False                                                                           |
+
 
 ### Include Virtual Machines
 

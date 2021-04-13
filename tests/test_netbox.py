@@ -55,6 +55,7 @@ def get_inv(
     **kwargs: Any,
 ) -> Inventory:
     _create_mock(requests_mock, pagination, version, "dcim", "devices")
+    _create_mock(requests_mock, False, version, "dcim", "platforms")
     if kwargs.get("include_vms", None):
         _create_mock(
             requests_mock, pagination, version, "virtualization", "virtual-machines"
@@ -144,3 +145,32 @@ class TestNetBoxInventory2(BaseTestInventory):
         ) as f:
             expected = json.load(f)
         assert expected == inv.dict()
+
+    @pytest.mark.parametrize("version", ["2.8.9"])
+    def test_inventory_use_platform_napalm_driver(
+        self, requests_mock: Mocker, version: str
+    ) -> None:
+        inv = get_inv(
+            requests_mock, self.plugin, False, version, use_platform_napalm_driver=True
+        )
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected_use_platform_napalm_driver.json",  # noqa: E501
+            "r",
+        ) as f:
+            expected = json.load(f)
+        assert expected == inv.dict()
+
+    @pytest.mark.parametrize("version", ["2.8.9"])
+    def test_inventory_multiple_platform_sources_raises_exception(
+        self, requests_mock: Mocker, version: str
+    ) -> None:
+        with pytest.raises(ValueError):
+            inv = get_inv(
+                requests_mock,
+                self.plugin,
+                False,
+                version,
+                use_platform_slug=True,
+                use_platform_napalm_driver=True,
+            )
+            assert inv
