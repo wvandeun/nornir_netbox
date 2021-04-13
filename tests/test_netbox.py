@@ -147,7 +147,9 @@ class TestNetBoxInventory2(BaseTestInventory):
         assert expected == inv.dict()
 
     @pytest.mark.parametrize("version", ["2.8.9"])
-    def test_inventory_use_platform_napalm_driver(self, requests_mock, version):
+    def test_inventory_use_platform_napalm_driver(
+        self, requests_mock: Mocker, version: str
+    ) -> None:
         inv = get_inv(
             requests_mock, self.plugin, False, version, use_platform_napalm_driver=True
         )
@@ -160,8 +162,8 @@ class TestNetBoxInventory2(BaseTestInventory):
 
     @pytest.mark.parametrize("version", ["2.8.9"])
     def test_inventory_multiple_platform_sources_raises_exception(
-        self, requests_mock, version
-    ):
+        self, requests_mock: Mocker, version: str
+    ) -> None:
         with pytest.raises(ValueError):
             inv = get_inv(
                 requests_mock,
