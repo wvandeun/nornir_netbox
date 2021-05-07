@@ -252,7 +252,6 @@ class NetBoxInventory2:
                 device["is_virtual"] = False
             nb_devices.extend(vms)
 
-
         hosts = Hosts()
         groups = Groups()
         defaults = Defaults()
