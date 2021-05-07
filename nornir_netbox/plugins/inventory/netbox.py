@@ -242,12 +242,16 @@ class NetBoxInventory2:
         )
 
         if self.include_vms:
-            nb_devices.extend(
-                self._get_resources(
-                    url=f"{self.nb_url}/api/virtualization/virtual-machines/?limit=0",
-                    params=self.filter_parameters,
-                )
+            vms = self._get_resources(
+                url=f"{self.nb_url}/api/virtualization/virtual-machines/?limit=0",
+                params=self.filter_parameters,
             )
+            for vm in vms:
+                vm["is_virtual"] = True
+            for device in nb_devices:
+                device["is_virtual"] = False
+            nb_devices.extend(vms)
+
 
         hosts = Hosts()
         groups = Groups()

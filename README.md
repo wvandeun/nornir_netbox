@@ -103,7 +103,7 @@ Arguments:
     flatten_custom_fields: Assign custom fields directly to the host's data attribute
         (defaults to False)
     filter_parameters: Key-value pairs that allow you to filter the NetBox inventory.
-    include_vms: Get virtual machines from NetBox as well as devices.
+    include_vms: Get virtual machines from NetBox as well as devices. This will also `is_virtual` to the host's data attributes.
         (defaults to False)
     use_platform_slug: Use the NetBox platform slug for the platform attribute of a Host
         (defaults to False)
