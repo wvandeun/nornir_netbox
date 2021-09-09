@@ -146,8 +146,8 @@ nr = InitNornir(
     inventory={
         "plugin": NetBoxInventory2,
         "options": {
-            "nb_url": "http://netbox.local:8000"
-            "nb_token": "1234567890"
+            "nb_url": "http://netbox.local:8000",
+            "nb_token": "1234567890",
             "filter_parameters": {"site": "site1"}
         }
     }
@@ -160,8 +160,8 @@ nr = InitNornir(
     inventory={
         "plugin": NetBoxInventory2,
         "options": {
-            "nb_url": "http://netbox.local:8000"
-            "nb_token": "1234567890"
+            "nb_url": "http://netbox.local:8000",
+            "nb_token": "1234567890",
             "filter_parameters": {
                 "site": "site1",
                 "platform": "cisco_ios",
@@ -177,8 +177,8 @@ nr = InitNornir(
     inventory={
         "plugin": NetBoxInventory2,
         "options": {
-            "nb_url": "http://netbox.local:8000"
-            "nb_token": "1234567890"
+            "nb_url": "http://netbox.local:8000",
+            "nb_token": "1234567890",
             "filter_parameters": {
                 "site": ["site1", "site2"],
                 "platform": "cisco_ios",
