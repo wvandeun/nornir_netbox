@@ -69,7 +69,8 @@
           "comments": "",
           "custom_fields": {},
           "created": "2018-07-12",
-          "last_updated": "2018-07-12T11:53:54.742412Z"
+          "last_updated": "2018-07-12T11:53:54.742412Z",
+          "is_virtual": false
         },
         "hostname": "10.0.1.4",
         "port": null,
@@ -146,7 +147,8 @@
           "comments": "",
           "custom_fields": {},
           "created": "2018-07-12",
-          "last_updated": "2018-07-12T11:53:54.742412Z"
+          "last_updated": "2018-07-12T11:53:54.742412Z",
+          "is_virtual": false
         },
         "hostname": "10.0.1.1",
         "port": null,
@@ -218,7 +220,8 @@
           "comments": "",
           "custom_fields": {},
           "created": "2018-07-12",
-          "last_updated": "2018-07-12T11:53:54.802934Z"
+          "last_updated": "2018-07-12T11:53:54.802934Z",
+          "is_virtual": false
         },
         "hostname": "172.16.2.1",
         "port": null,
@@ -297,7 +300,8 @@
             "user_defined": 1
           },
           "created": "2018-07-12",
-          "last_updated": "2018-07-12T11:53:54.866133Z"
+          "last_updated": "2018-07-12T11:53:54.866133Z",
+          "is_virtual": false
         },
         "hostname": "192.168.3.1",
         "port": null,
@@ -372,7 +376,8 @@
             ]
           },
           "created": "2020-09-06",
-          "last_updated": "2020-09-06T05:03:17.932973Z"
+          "last_updated": "2020-09-06T05:03:17.932973Z",
+          "is_virtual": true
         },
         "hostname": "2.2.2.2",
         "port": null,
@@ -441,7 +446,8 @@
             "testbed": "abcd"
           },
           "created": "2020-09-06",
-          "last_updated": "2020-09-06T05:03:36.371611Z"
+          "last_updated": "2020-09-06T05:03:36.371611Z",
+          "is_virtual": true
         },
         "hostname": "55.1.0.3",
         "port": null,
@@ -519,7 +525,8 @@
             ]
           },
           "created": "2020-09-06",
-          "last_updated": "2020-09-06T05:03:52.392577Z"
+          "last_updated": "2020-09-06T05:03:52.392577Z",
+          "is_virtual": true
         },
         "hostname": "16.52.0.1",
         "port": null,
@@ -588,7 +595,8 @@
             "role": "prod"
           },
           "created": "2020-09-06",
-          "last_updated": "2020-09-06T05:03:03.629883Z"
+          "last_updated": "2020-09-06T05:03:03.629883Z",
+          "is_virtual": true
         },
         "hostname": "66.102.99.6",
         "port": null,
