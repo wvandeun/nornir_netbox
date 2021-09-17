@@ -127,15 +127,6 @@ class TestNetBoxInventory2(BaseTestInventory):
             expected = json.load(f)
         assert expected == inv.dict()
 
-    @pytest.mark.parametrize("version", VERSIONS)
-    def test_inventory_with_defaults_file(self, requests_mock, version):
-        inv = get_inv(requests_mock, self.plugin, False, version, defaults_file=f"{BASE_PATH}/data/defaults.yaml")
-        with open(
-            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected-defaults.json", "r"
-        ) as f:
-            expected = json.load(f)
-        assert expected == inv.dict()
-
     @pytest.mark.parametrize("version", ["2.8.9"])
     def test_inventory_use_platform_slug_include_vms(
         self, requests_mock: Mocker, version: str
@@ -170,8 +161,69 @@ class TestNetBoxInventory2(BaseTestInventory):
         assert expected == inv.dict()
 
     @pytest.mark.parametrize("version", VERSIONS)
-    def test_inventory_with_groups_file(self, requests_mock, version):
-        pass
+    def test_inventory_with_defaults_file(
+        self, requests_mock: Mocker, version: str
+    ) -> None:
+        inv = get_inv(
+            requests_mock,
+            self.plugin,
+            False,
+            version,
+            defaults_file=f"{BASE_PATH}/data/defaults.yaml",
+        )
+
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected-defaults.json", "r"
+        ) as f:
+            expected = json.load(f)
+
+        assert expected == inv.dict()
+        assert expected["defaults"]["username"] == inv.hosts["1-Core"].username
+        assert expected["defaults"]["password"] == inv.hosts["2-Distribution"].password
+        assert expected["defaults"]["data"]["domain"] == inv.hosts["3-Access"]["domain"]
+
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_groups_file(
+        self, requests_mock: Mocker, version: str
+    ) -> None:
+        inv = get_inv(
+            requests_mock,
+            self.plugin,
+            False,
+            version,
+            group_file=f"{BASE_PATH}/data/groups.yaml",
+        )
+
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected-group.json", "r"
+        ) as f:
+            expected = json.load(f)
+
+        assert expected == inv.dict()
+        assert (
+            expected["groups"]["platform__ios"]["username"]
+            == inv.hosts["3-Access"].username
+        )
+        assert (
+            expected["groups"]["platform__ios"]["password"]
+            == inv.hosts["3-Access"].password
+        )
+        assert (
+            expected["groups"]["platform__ios"]["data"]["domain"]
+            == inv.hosts["3-Access"]["domain"]
+        )
+        assert (
+            expected["groups"]["platform__junos"]["username"]
+            == inv.hosts["1-Core"].username
+        )
+        assert (
+            expected["groups"]["platform__junos"]["password"]
+            == inv.hosts["1-Core"].password
+        )
+        assert (
+            expected["groups"]["platform__junos"]["data"]["domain"]
+            == inv.hosts["4"]["domain"]
+        )
 
     @pytest.mark.parametrize("version", ["2.8.9"])
     def test_inventory_multiple_platform_sources_raises_exception(
@@ -189,17 +241,115 @@ class TestNetBoxInventory2(BaseTestInventory):
             assert inv
 
     @pytest.mark.parametrize("version", VERSIONS)
-    def test_inventory_with_defaults_and_groups_file(self, requests_mock, version):
-        pass
+    def test_inventory_with_defaults_and_groups_file(
+        self, requests_mock: Mocker, version: str
+    ) -> None:
+        inv = get_inv(
+            requests_mock,
+            self.plugin,
+            False,
+            version,
+            defaults_file=f"{BASE_PATH}/data/defaults.yaml",
+            group_file=f"{BASE_PATH}/data/groups.yaml",
+        )
+
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected-defaults-group.json",
+            "r",
+        ) as f:
+            expected = json.load(f)
+
+        assert expected == inv.dict()
+        assert (
+            expected["groups"]["platform__ios"]["username"]
+            == inv.hosts["3-Access"].username
+        )
+        assert (
+            expected["groups"]["platform__ios"]["password"]
+            == inv.hosts["3-Access"].password
+        )
+        assert (
+            expected["groups"]["platform__ios"]["data"]["domain"]
+            == inv.hosts["3-Access"]["domain"]
+        )
+        assert (
+            expected["groups"]["platform__junos"]["username"]
+            == inv.hosts["1-Core"].username
+        )
+        assert (
+            expected["groups"]["platform__junos"]["password"]
+            == inv.hosts["1-Core"].password
+        )
+        assert (
+            expected["groups"]["platform__junos"]["data"]["domain"]
+            == inv.hosts["4"]["domain"]
+        )
+        assert expected["defaults"]["username"] == inv.hosts["2-Distribution"].username
+        assert expected["defaults"]["password"] == inv.hosts["2-Distribution"].password
+        assert (
+            expected["defaults"]["data"]["domain"]
+            == inv.hosts["2-Distribution"]["domain"]
+        )
 
     @pytest.mark.parametrize("version", VERSIONS)
-    def test_inventory_with_empty_defaults_file(self, requests_mock, version):
-        pass
+    def test_inventory_with_empty_defaults_file(
+        self, requests_mock: Mocker, version: str
+    ) -> None:
+        "test loading inventory with empty defaults file, should not raise an exception"
+
+        inv = get_inv(
+            requests_mock,
+            self.plugin,
+            False,
+            version,
+            defaults_file=f"{BASE_PATH}/data/defaults-empty.yaml",
+        )
+
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected.json", "r"
+        ) as f:
+            expected = json.load(f)
+
+        assert expected == inv.dict()
 
     @pytest.mark.parametrize("version", VERSIONS)
-    def test_inventory_with_empty_groups_file(self, requests_mock, version):
-        pass
+    def test_inventory_with_empty_groups_file(
+        self, requests_mock: Mocker, version: str
+    ) -> None:
+        "test loading inventory with empty groups file, should not raise an exception"
+
+        inv = get_inv(
+            requests_mock,
+            self.plugin,
+            False,
+            version,
+            groups_file=f"{BASE_PATH}/data/groups-empty.yaml",
+        )
+
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected.json", "r"
+        ) as f:
+            expected = json.load(f)
+
+        assert expected == inv.dict()
 
     @pytest.mark.parametrize("version", VERSIONS)
-    def test_inventory_with_empty_defaults_and_groups_file(self, requests_mock, version):
-        pass
+    def test_inventory_with_empty_defaults_and_groups_file(
+        self, requests_mock: Mocker, version: str
+    ) -> None:
+        "test loading inventory with empty defaults and groups file, should not raise an exception"
+        inv = get_inv(
+            requests_mock,
+            self.plugin,
+            False,
+            version,
+            defaults_file=f"{BASE_PATH}/data/defaults-empty.yaml",
+            groups_file=f"{BASE_PATH}/data/groups-empty.yaml",
+        )
+
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected.json", "r"
+        ) as f:
+            expected = json.load(f)
+
+        assert expected == inv.dict()

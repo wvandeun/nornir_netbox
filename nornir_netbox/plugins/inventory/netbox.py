@@ -312,6 +312,8 @@ class NetBoxInventory2:
             with self.defaults_file.open("r") as f:
                 defaults_dict = yml.load(f) or {}
             defaults = _get_defaults(defaults_dict)
+        else:
+            defaults = Defaults()
 
         if self.group_file.exists():
             with self.group_file.open("r") as f:
