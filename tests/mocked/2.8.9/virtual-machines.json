@@ -4,173 +4,149 @@
     "previous": null,
     "results": [
         {
-            "id": 4,
-            "name": "ca-expedition-10",
-            "status": {
-                "value": "active",
-                "label": "Active",
-                "id": 1
-            },
-            "site": null,
             "cluster": {
                 "id": 3,
-                "url": "http://localhost:8000/api/virtualization/clusters/3/",
-                "name": "cluster-abc"
+                "name": "cluster-abc",
+                "url": "http://localhost:8000/api/virtualization/clusters/3/"
             },
-            "role": {
-                "id": 4,
-                "url": "http://localhost:8000/api/dcim/device-roles/4/",
-                "name": "server",
-                "slug": "server"
-            },
-            "tenant": null,
-            "platform": {
-                "id": 8,
-                "url": "http://localhost:8000/api/dcim/platforms/8/",
-                "name": "Expedition",
-                "slug": "expedition"
-            },
-            "primary_ip": {
-                "id": 6,
-                "url": "http://localhost:8000/api/ipam/ip-addresses/6/",
-                "family": 4,
-                "address": "2.2.2.2/24"
-            },
-            "primary_ip4": {
-                "id": 6,
-                "url": "http://localhost:8000/api/ipam/ip-addresses/6/",
-                "family": 4,
-                "address": "2.2.2.2/24"
-            },
-            "primary_ip6": null,
-            "vcpus": 12,
-            "memory": 16000,
-            "disk": 1000,
             "comments": "",
+            "config_context": {
+                "transition_groups": [
+                    "ASA-5525",
+                    "ASA-5550",
+                    "ASA-5550-Internet"
+                ]
+            },
+            "created": "2020-09-06",
+            "custom_fields": {},
+            "disk": 1000,
+            "id": 4,
+            "last_updated": "2020-09-06T05:03:17.932973Z",
             "local_context_data": {
                 "transition_groups": [
                     "ASA-5525",
                     "ASA-5550",
                     "ASA-5550-Internet"
                 ]
+            },
+            "memory": 16000,
+            "name": "ca-expedition-10",
+            "platform": {
+                "id": 8,
+                "name": "Expedition",
+                "slug": "expedition",
+                "url": "http://localhost:8000/api/dcim/platforms/8/"
+            },
+            "primary_ip": {
+                "address": "2.2.2.2/24",
+                "family": 4,
+                "id": 6,
+                "url": "http://localhost:8000/api/ipam/ip-addresses/6/"
+            },
+            "primary_ip4": {
+                "address": "2.2.2.2/24",
+                "family": 4,
+                "id": 6,
+                "url": "http://localhost:8000/api/ipam/ip-addresses/6/"
+            },
+            "primary_ip6": null,
+            "role": {
+                "id": 4,
+                "name": "server",
+                "slug": "server",
+                "url": "http://localhost:8000/api/dcim/device-roles/4/"
+            },
+            "site": null,
+            "status": {
+                "id": 1,
+                "label": "Active",
+                "value": "active"
             },
             "tags": [
                 "temporary"
             ],
-            "custom_fields": {},
-            "config_context": {
-                "transition_groups": [
-                    "ASA-5525",
-                    "ASA-5550",
-                    "ASA-5550-Internet"
-                ]
-            },
-            "created": "2020-09-06",
-            "last_updated": "2020-09-06T05:03:17.932973Z"
+            "tenant": null,
+            "vcpus": 12
         },
         {
-            "id": 2,
-            "name": "ca-panorama-1",
-            "status": {
-                "value": "active",
-                "label": "Active",
-                "id": 1
-            },
-            "site": null,
             "cluster": {
                 "id": 3,
-                "url": "http://localhost:8000/api/virtualization/clusters/3/",
-                "name": "cluster-abc"
+                "name": "cluster-abc",
+                "url": "http://localhost:8000/api/virtualization/clusters/3/"
             },
-            "role": {
-                "id": 4,
-                "url": "http://localhost:8000/api/dcim/device-roles/4/",
-                "name": "server",
-                "slug": "server"
-            },
-            "tenant": null,
-            "platform": {
-                "id": 4,
-                "url": "http://localhost:8000/api/dcim/platforms/4/",
-                "name": "PanOS",
-                "slug": "panos"
-            },
-            "primary_ip": {
-                "id": 18,
-                "url": "http://localhost:8000/api/ipam/ip-addresses/18/",
-                "family": 4,
-                "address": "55.1.0.3/27"
-            },
-            "primary_ip4": {
-                "id": 18,
-                "url": "http://localhost:8000/api/ipam/ip-addresses/18/",
-                "family": 4,
-                "address": "55.1.0.3/27"
-            },
-            "primary_ip6": null,
-            "vcpus": 8,
-            "memory": 8000,
-            "disk": 500,
             "comments": "",
+            "config_context": {
+                "index": 12,
+                "testbed": "abcd"
+            },
+            "created": "2020-09-06",
+            "custom_fields": {},
+            "disk": 500,
+            "id": 2,
+            "last_updated": "2020-09-06T05:03:36.371611Z",
             "local_context_data": {
                 "index": 12,
                 "testbed": "abcd"
             },
+            "memory": 8000,
+            "name": "ca-panorama-1",
+            "platform": {
+                "id": 4,
+                "name": "PanOS",
+                "slug": "panos",
+                "url": "http://localhost:8000/api/dcim/platforms/4/"
+            },
+            "primary_ip": {
+                "address": "55.1.0.3/27",
+                "family": 4,
+                "id": 18,
+                "url": "http://localhost:8000/api/ipam/ip-addresses/18/"
+            },
+            "primary_ip4": {
+                "address": "55.1.0.3/27",
+                "family": 4,
+                "id": 18,
+                "url": "http://localhost:8000/api/ipam/ip-addresses/18/"
+            },
+            "primary_ip6": null,
+            "role": {
+                "id": 4,
+                "name": "server",
+                "slug": "server",
+                "url": "http://localhost:8000/api/dcim/device-roles/4/"
+            },
+            "site": null,
+            "status": {
+                "id": 1,
+                "label": "Active",
+                "value": "active"
+            },
             "tags": [
                 "pano"
             ],
-            "custom_fields": {},
-            "config_context": {
-                "index": 12,
-                "testbed": "abcd"
-            },
-            "created": "2020-09-06",
-            "last_updated": "2020-09-06T05:03:36.371611Z"
+            "tenant": null,
+            "vcpus": 8
         },
         {
-            "id": 5,
-            "name": "tx-pa100-fw1",
-            "status": {
-                "value": "active",
-                "label": "Active",
-                "id": 1
-            },
-            "site": null,
             "cluster": {
                 "id": 3,
-                "url": "http://localhost:8000/api/virtualization/clusters/3/",
-                "name": "cluster-abc"
+                "name": "cluster-abc",
+                "url": "http://localhost:8000/api/virtualization/clusters/3/"
             },
-            "role": {
-                "id": 4,
-                "url": "http://localhost:8000/api/dcim/device-roles/4/",
-                "name": "server",
-                "slug": "server"
-            },
-            "tenant": null,
-            "platform": {
-                "id": 4,
-                "url": "http://localhost:8000/api/dcim/platforms/4/",
-                "name": "PanOS",
-                "slug": "panos"
-            },
-            "primary_ip": {
-                "id": 19,
-                "url": "http://localhost:8000/api/ipam/ip-addresses/19/",
-                "family": 4,
-                "address": "16.52.0.1/17"
-            },
-            "primary_ip4": {
-                "id": 19,
-                "url": "http://localhost:8000/api/ipam/ip-addresses/19/",
-                "family": 4,
-                "address": "16.52.0.1/17"
-            },
-            "primary_ip6": null,
-            "vcpus": 4,
-            "memory": 4000,
-            "disk": 500,
             "comments": "",
+            "config_context": {
+                "bgp_as": 65101,
+                "interfaces": [
+                    "ethernet1",
+                    "ethernet2",
+                    "ethernet3"
+                ]
+            },
+            "created": "2020-09-06",
+            "custom_fields": {},
+            "disk": 500,
+            "id": 5,
+            "last_updated": "2020-09-06T05:03:52.392577Z",
             "local_context_data": {
                 "bgp_as": 65101,
                 "interfaces": [
@@ -178,81 +154,105 @@
                     "ethernet2",
                     "ethernet3"
                 ]
+            },
+            "memory": 4000,
+            "name": "tx-pa100-fw1",
+            "platform": {
+                "id": 4,
+                "name": "PanOS",
+                "slug": "panos",
+                "url": "http://localhost:8000/api/dcim/platforms/4/"
+            },
+            "primary_ip": {
+                "address": "16.52.0.1/17",
+                "family": 4,
+                "id": 19,
+                "url": "http://localhost:8000/api/ipam/ip-addresses/19/"
+            },
+            "primary_ip4": {
+                "address": "16.52.0.1/17",
+                "family": 4,
+                "id": 19,
+                "url": "http://localhost:8000/api/ipam/ip-addresses/19/"
+            },
+            "primary_ip6": null,
+            "role": {
+                "id": 4,
+                "name": "server",
+                "slug": "server",
+                "url": "http://localhost:8000/api/dcim/device-roles/4/"
+            },
+            "site": null,
+            "status": {
+                "id": 1,
+                "label": "Active",
+                "value": "active"
             },
             "tags": [
                 "border",
                 "firewall"
             ],
-            "custom_fields": {},
-            "config_context": {
-                "bgp_as": 65101,
-                "interfaces": [
-                    "ethernet1",
-                    "ethernet2",
-                    "ethernet3"
-                ]
-            },
-            "created": "2020-09-06",
-            "last_updated": "2020-09-06T05:03:52.392577Z"
+            "tenant": null,
+            "vcpus": 4
         },
         {
-            "id": 3,
-            "name": "tx-scout-1",
-            "status": {
-                "value": "active",
-                "label": "Active",
-                "id": 1
-            },
-            "site": null,
             "cluster": {
                 "id": 2,
-                "url": "http://localhost:8000/api/virtualization/clusters/2/",
-                "name": "cluster-xyz"
+                "name": "cluster-xyz",
+                "url": "http://localhost:8000/api/virtualization/clusters/2/"
             },
-            "role": {
-                "id": 4,
-                "url": "http://localhost:8000/api/dcim/device-roles/4/",
-                "name": "server",
-                "slug": "server"
-            },
-            "tenant": null,
-            "platform": {
-                "id": 7,
-                "url": "http://localhost:8000/api/dcim/platforms/7/",
-                "name": "Scout",
-                "slug": "scout"
-            },
-            "primary_ip": {
-                "id": 20,
-                "url": "http://localhost:8000/api/ipam/ip-addresses/20/",
-                "family": 4,
-                "address": "66.102.99.6/29"
-            },
-            "primary_ip4": {
-                "id": 20,
-                "url": "http://localhost:8000/api/ipam/ip-addresses/20/",
-                "family": 4,
-                "address": "66.102.99.6/29"
-            },
-            "primary_ip6": null,
-            "vcpus": 7,
-            "memory": 8000,
-            "disk": 500,
             "comments": "",
+            "config_context": {
+                "mode": "monitor",
+                "role": "prod"
+            },
+            "created": "2020-09-06",
+            "custom_fields": {},
+            "disk": 500,
+            "id": 3,
+            "last_updated": "2020-09-06T05:03:03.629883Z",
             "local_context_data": {
                 "mode": "monitor",
                 "role": "prod"
             },
+            "memory": 8000,
+            "name": "tx-scout-1",
+            "platform": {
+                "id": 7,
+                "name": "Scout",
+                "slug": "scout",
+                "url": "http://localhost:8000/api/dcim/platforms/7/"
+            },
+            "primary_ip": {
+                "address": "66.102.99.6/29",
+                "family": 4,
+                "id": 20,
+                "url": "http://localhost:8000/api/ipam/ip-addresses/20/"
+            },
+            "primary_ip4": {
+                "address": "66.102.99.6/29",
+                "family": 4,
+                "id": 20,
+                "url": "http://localhost:8000/api/ipam/ip-addresses/20/"
+            },
+            "primary_ip6": null,
+            "role": {
+                "id": 4,
+                "name": "server",
+                "slug": "server",
+                "url": "http://localhost:8000/api/dcim/device-roles/4/"
+            },
+            "site": null,
+            "status": {
+                "id": 1,
+                "label": "Active",
+                "value": "active"
+            },
             "tags": [
                 "tag55"
             ],
-            "custom_fields": {},
-            "config_context": {
-                "mode": "monitor",
-                "role": "prod"
-            },
-            "created": "2020-09-06",
-            "last_updated": "2020-09-06T05:03:03.629883Z"
+            "tenant": null,
+            "vcpus": 7
         }
     ]
 }

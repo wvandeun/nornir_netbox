@@ -88,25 +88,29 @@
         },
         "platform__ios": {
             "connection_options": {},
-            "data": {},
+            "data": {
+                "domain": "cisco.acme.local"
+            },
             "groups": [],
             "hostname": null,
             "name": "platform__ios",
-            "password": null,
+            "password": "ciscosecret",
             "platform": null,
-            "port": null,
-            "username": null
+            "port": 22,
+            "username": "cisco"
         },
         "platform__junos": {
             "connection_options": {},
-            "data": {},
+            "data": {
+                "domain": "juniper.acme.local"
+            },
             "groups": [],
             "hostname": null,
             "name": "platform__junos",
-            "password": null,
+            "password": "junipersecret",
             "platform": null,
-            "port": null,
-            "username": null
+            "port": 2222,
+            "username": "juniper"
         },
         "site__san-jose-ca": {
             "connection_options": {},
@@ -211,7 +215,7 @@
             "hostname": "10.0.1.1",
             "name": "1-Core",
             "password": null,
-            "platform": "junos",
+            "platform": "juniper_junos",
             "port": null,
             "username": null
         },
@@ -373,7 +377,7 @@
             "hostname": "192.168.3.1",
             "name": "3-Access",
             "password": null,
-            "platform": "ios",
+            "platform": "cisco_ios",
             "port": null,
             "username": null
         },
@@ -456,7 +460,7 @@
             "hostname": "10.0.1.4",
             "name": "4",
             "password": null,
-            "platform": "junos",
+            "platform": "juniper_junos",
             "port": null,
             "username": null
         }

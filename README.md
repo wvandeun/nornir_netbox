@@ -109,9 +109,44 @@ Arguments:
         (defaults to False)
     use_platform_napalm_driver: Use the Netbox platform napalm driver setting for the platform attribute of a Host
         (defaults to False)
+    group_file: path to file with groups definition. If it doesn't exist it will be skipped
+    defaults_file: path to file with defaults definition. If it doesn't exist it will be skipped
 ```
 
 Only one of use_platform_slug and use_platform_napalm_driver can be set to true.
+
+### Using SimpleInventory groups and defaults file
+
+This feature allows you to use SimpleInventory groups and defaults file with NetBoxInventory2.
+NetBoxInventory2 will automatically create groups for specific attributes of NetBox devices or virtual-machines.
+The following attributes will be used to create groups:
+- site
+- platform
+- device_role
+- device_type
+- manufacturer (extracted from device_type)
+
+From these attributes we will use the slug property to create the group. Groups will be created using the following format `attribute__slug`.
+For example, assume a device that is part of a site `Site 1` for which the slug is `site-1`. NetBoxInventory2 will create a group with the name `site__site-1` and add the device to the group.
+
+These groups can then be used in a groups file and you can add data to them, similar to how the SimpleInventory plugin works.
+More information on on the defaults and groups file can be found in [Nornir's documentation](https://nornir.readthedocs.io/en/latest/tutorial/inventory.html).
+
+```python
+from nornir import InitNornir
+
+nr = InitNornir(
+    inventory={
+        "plugin":"NBInventory",
+        "options": {
+            "nb_url": "https://netbox.local",
+            "nb_token": "123_NETBOX_API_TOKEN_456",
+            "group_file": "inventory/groups.yml",
+            "defaults_file": "inventory/defaults.yml"
+        }
+    }
+)
+```
 
 # Useful Links
 

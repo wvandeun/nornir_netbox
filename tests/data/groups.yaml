@@ -1,0 +1,14 @@
+---
+platform__ios:
+  username: "cisco"
+  password: "ciscosecret"
+  port: 22
+  data:
+    domain: "cisco.acme.local"
+
+platform__junos:
+  username: "juniper"
+  password: "junipersecret"
+  port: 2222
+  data:
+    domain: "juniper.acme.local"

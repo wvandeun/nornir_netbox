@@ -4,60 +4,12 @@
     "previous": null,
     "results": [
         {
-            "id": 4,
-            "name": "ca-expedition-10",
-            "status": {
-                "value": "active",
-                "label": "Active",
-                "id": 1
-            },
-            "site": null,
             "cluster": {
                 "id": 3,
-                "url": "http://localhost:8000/api/virtualization/clusters/3/",
-                "name": "cluster-abc"
+                "name": "cluster-abc",
+                "url": "http://localhost:8000/api/virtualization/clusters/3/"
             },
-            "role": {
-                "id": 4,
-                "url": "http://localhost:8000/api/dcim/device-roles/4/",
-                "name": "server",
-                "slug": "server"
-            },
-            "tenant": null,
-            "platform": {
-                "id": 8,
-                "url": "http://localhost:8000/api/dcim/platforms/8/",
-                "name": "Expedition",
-                "slug": "expedition"
-            },
-            "primary_ip": {
-                "id": 6,
-                "url": "http://localhost:8000/api/ipam/ip-addresses/6/",
-                "family": 4,
-                "address": "2.2.2.2/24"
-            },
-            "primary_ip4": {
-                "id": 6,
-                "url": "http://localhost:8000/api/ipam/ip-addresses/6/",
-                "family": 4,
-                "address": "2.2.2.2/24"
-            },
-            "primary_ip6": null,
-            "vcpus": 12,
-            "memory": 16000,
-            "disk": 1000,
             "comments": "",
-            "local_context_data": {
-                "transition_groups": [
-                    "ASA-5525",
-                    "ASA-5550",
-                    "ASA-5550-Internet"
-                ]
-            },
-            "tags": [
-                "temporary"
-            ],
-            "custom_fields": {},
             "config_context": {
                 "transition_groups": [
                     "ASA-5525",
@@ -66,7 +18,55 @@
                 ]
             },
             "created": "2020-09-06",
-            "last_updated": "2020-09-06T05:03:17.932973Z"
+            "custom_fields": {},
+            "disk": 1000,
+            "id": 4,
+            "last_updated": "2020-09-06T05:03:17.932973Z",
+            "local_context_data": {
+                "transition_groups": [
+                    "ASA-5525",
+                    "ASA-5550",
+                    "ASA-5550-Internet"
+                ]
+            },
+            "memory": 16000,
+            "name": "ca-expedition-10",
+            "platform": {
+                "id": 8,
+                "name": "Expedition",
+                "slug": "expedition",
+                "url": "http://localhost:8000/api/dcim/platforms/8/"
+            },
+            "primary_ip": {
+                "address": "2.2.2.2/24",
+                "family": 4,
+                "id": 6,
+                "url": "http://localhost:8000/api/ipam/ip-addresses/6/"
+            },
+            "primary_ip4": {
+                "address": "2.2.2.2/24",
+                "family": 4,
+                "id": 6,
+                "url": "http://localhost:8000/api/ipam/ip-addresses/6/"
+            },
+            "primary_ip6": null,
+            "role": {
+                "id": 4,
+                "name": "server",
+                "slug": "server",
+                "url": "http://localhost:8000/api/dcim/device-roles/4/"
+            },
+            "site": null,
+            "status": {
+                "id": 1,
+                "label": "Active",
+                "value": "active"
+            },
+            "tags": [
+                "temporary"
+            ],
+            "tenant": null,
+            "vcpus": 12
         }
     ]
 }

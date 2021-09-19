@@ -1,0 +1,1490 @@
+{
+    "defaults": {
+        "connection_options": {},
+        "data": {},
+        "hostname": null,
+        "password": null,
+        "platform": null,
+        "port": null,
+        "username": null
+    },
+    "groups": {},
+    "hosts": {
+        "1-access-switch-a": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 4,
+                    "name": "access-switch",
+                    "slug": "access-switch",
+                    "url": "http://localhost:8000/api/dcim/device-roles/4/"
+                },
+                "device_type": {
+                    "display_name": "Cisco C9300-48P",
+                    "id": 2,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "C9300-48P",
+                    "slug": "c9300-48p",
+                    "url": "http://localhost:8000/api/dcim/device-types/2/"
+                },
+                "display_name": "1-access-switch-a",
+                "face": null,
+                "id": 5,
+                "last_updated": "2021-01-30T22:51:10.120934Z",
+                "local_context_data": null,
+                "name": "1-access-switch-a",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.1.255.5/24",
+                    "family": 4,
+                    "id": 5,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/5/"
+                },
+                "primary_ip4": {
+                    "address": "10.1.255.5/24",
+                    "family": 4,
+                    "id": 5,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/5/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 1,
+                    "name": "Site 1",
+                    "slug": "site-1",
+                    "url": "http://localhost:8000/api/dcim/sites/1/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.1.255.5",
+            "name": "1-access-switch-a",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "1-access-switch-b": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 4,
+                    "name": "access-switch",
+                    "slug": "access-switch",
+                    "url": "http://localhost:8000/api/dcim/device-roles/4/"
+                },
+                "device_type": {
+                    "display_name": "Cisco C9300-48P",
+                    "id": 2,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "C9300-48P",
+                    "slug": "c9300-48p",
+                    "url": "http://localhost:8000/api/dcim/device-types/2/"
+                },
+                "display_name": "1-access-switch-b",
+                "face": null,
+                "id": 6,
+                "last_updated": "2021-01-30T22:51:10.504100Z",
+                "local_context_data": null,
+                "name": "1-access-switch-b",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.1.255.6/24",
+                    "family": 4,
+                    "id": 6,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/6/"
+                },
+                "primary_ip4": {
+                    "address": "10.1.255.6/24",
+                    "family": 4,
+                    "id": 6,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/6/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 1,
+                    "name": "Site 1",
+                    "slug": "site-1",
+                    "url": "http://localhost:8000/api/dcim/sites/1/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.1.255.6",
+            "name": "1-access-switch-b",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "1-distro-switch-a": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 3,
+                    "name": "distro-switch",
+                    "slug": "distro-switch",
+                    "url": "http://localhost:8000/api/dcim/device-roles/3/"
+                },
+                "device_type": {
+                    "display_name": "Cisco C9300-48P",
+                    "id": 2,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "C9300-48P",
+                    "slug": "c9300-48p",
+                    "url": "http://localhost:8000/api/dcim/device-types/2/"
+                },
+                "display_name": "1-distro-switch-a",
+                "face": null,
+                "id": 3,
+                "last_updated": "2021-01-30T22:51:09.438218Z",
+                "local_context_data": null,
+                "name": "1-distro-switch-a",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.1.255.3/24",
+                    "family": 4,
+                    "id": 3,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/3/"
+                },
+                "primary_ip4": {
+                    "address": "10.1.255.3/24",
+                    "family": 4,
+                    "id": 3,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/3/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 1,
+                    "name": "Site 1",
+                    "slug": "site-1",
+                    "url": "http://localhost:8000/api/dcim/sites/1/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.1.255.3",
+            "name": "1-distro-switch-a",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "1-distro-switch-b": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 3,
+                    "name": "distro-switch",
+                    "slug": "distro-switch",
+                    "url": "http://localhost:8000/api/dcim/device-roles/3/"
+                },
+                "device_type": {
+                    "display_name": "Cisco C9300-48P",
+                    "id": 2,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "C9300-48P",
+                    "slug": "c9300-48p",
+                    "url": "http://localhost:8000/api/dcim/device-types/2/"
+                },
+                "display_name": "1-distro-switch-b",
+                "face": null,
+                "id": 4,
+                "last_updated": "2021-01-30T22:51:09.767128Z",
+                "local_context_data": null,
+                "name": "1-distro-switch-b",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.1.255.4/24",
+                    "family": 4,
+                    "id": 4,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/4/"
+                },
+                "primary_ip4": {
+                    "address": "10.1.255.4/24",
+                    "family": 4,
+                    "id": 4,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/4/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 1,
+                    "name": "Site 1",
+                    "slug": "site-1",
+                    "url": "http://localhost:8000/api/dcim/sites/1/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.1.255.4",
+            "name": "1-distro-switch-b",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "1-wan-router-a": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 1,
+                    "name": "wan-router",
+                    "slug": "wan-router",
+                    "url": "http://localhost:8000/api/dcim/device-roles/1/"
+                },
+                "device_type": {
+                    "display_name": "Cisco ASR-1002HX",
+                    "id": 1,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "ASR-1002HX",
+                    "slug": "asr-1002hx",
+                    "url": "http://localhost:8000/api/dcim/device-types/1/"
+                },
+                "display_name": "1-wan-router-a",
+                "face": null,
+                "id": 1,
+                "last_updated": "2021-01-30T22:51:08.684812Z",
+                "local_context_data": null,
+                "name": "1-wan-router-a",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.1.255.1/24",
+                    "family": 4,
+                    "id": 1,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/1/"
+                },
+                "primary_ip4": {
+                    "address": "10.1.255.1/24",
+                    "family": 4,
+                    "id": 1,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/1/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 1,
+                    "name": "Site 1",
+                    "slug": "site-1",
+                    "url": "http://localhost:8000/api/dcim/sites/1/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.1.255.1",
+            "name": "1-wan-router-a",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "1-wan-router-b": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 1,
+                    "name": "wan-router",
+                    "slug": "wan-router",
+                    "url": "http://localhost:8000/api/dcim/device-roles/1/"
+                },
+                "device_type": {
+                    "display_name": "Cisco ASR-1002HX",
+                    "id": 1,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "ASR-1002HX",
+                    "slug": "asr-1002hx",
+                    "url": "http://localhost:8000/api/dcim/device-types/1/"
+                },
+                "display_name": "1-wan-router-b",
+                "face": null,
+                "id": 2,
+                "last_updated": "2021-01-30T22:51:09.072101Z",
+                "local_context_data": null,
+                "name": "1-wan-router-b",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.1.255.2/24",
+                    "family": 4,
+                    "id": 2,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/2/"
+                },
+                "primary_ip4": {
+                    "address": "10.1.255.2/24",
+                    "family": 4,
+                    "id": 2,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/2/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 1,
+                    "name": "Site 1",
+                    "slug": "site-1",
+                    "url": "http://localhost:8000/api/dcim/sites/1/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.1.255.2",
+            "name": "1-wan-router-b",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "2-access-switch-a": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 4,
+                    "name": "access-switch",
+                    "slug": "access-switch",
+                    "url": "http://localhost:8000/api/dcim/device-roles/4/"
+                },
+                "device_type": {
+                    "display_name": "Cisco C9300-48P",
+                    "id": 2,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "C9300-48P",
+                    "slug": "c9300-48p",
+                    "url": "http://localhost:8000/api/dcim/device-types/2/"
+                },
+                "display_name": "2-access-switch-a",
+                "face": null,
+                "id": 11,
+                "last_updated": "2021-01-30T22:51:12.334144Z",
+                "local_context_data": null,
+                "name": "2-access-switch-a",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.2.255.5/24",
+                    "family": 4,
+                    "id": 11,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/11/"
+                },
+                "primary_ip4": {
+                    "address": "10.2.255.5/24",
+                    "family": 4,
+                    "id": 11,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/11/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 2,
+                    "name": "Site 2",
+                    "slug": "site-2",
+                    "url": "http://localhost:8000/api/dcim/sites/2/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.2.255.5",
+            "name": "2-access-switch-a",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "2-access-switch-b": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 4,
+                    "name": "access-switch",
+                    "slug": "access-switch",
+                    "url": "http://localhost:8000/api/dcim/device-roles/4/"
+                },
+                "device_type": {
+                    "display_name": "Cisco C9300-48P",
+                    "id": 2,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "C9300-48P",
+                    "slug": "c9300-48p",
+                    "url": "http://localhost:8000/api/dcim/device-types/2/"
+                },
+                "display_name": "2-access-switch-b",
+                "face": null,
+                "id": 12,
+                "last_updated": "2021-01-30T22:51:12.701284Z",
+                "local_context_data": null,
+                "name": "2-access-switch-b",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.2.255.6/24",
+                    "family": 4,
+                    "id": 12,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/12/"
+                },
+                "primary_ip4": {
+                    "address": "10.2.255.6/24",
+                    "family": 4,
+                    "id": 12,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/12/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 2,
+                    "name": "Site 2",
+                    "slug": "site-2",
+                    "url": "http://localhost:8000/api/dcim/sites/2/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.2.255.6",
+            "name": "2-access-switch-b",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "2-distro-switch-a": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 3,
+                    "name": "distro-switch",
+                    "slug": "distro-switch",
+                    "url": "http://localhost:8000/api/dcim/device-roles/3/"
+                },
+                "device_type": {
+                    "display_name": "Cisco C9300-48P",
+                    "id": 2,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "C9300-48P",
+                    "slug": "c9300-48p",
+                    "url": "http://localhost:8000/api/dcim/device-types/2/"
+                },
+                "display_name": "2-distro-switch-a",
+                "face": null,
+                "id": 9,
+                "last_updated": "2021-01-30T22:51:11.569780Z",
+                "local_context_data": null,
+                "name": "2-distro-switch-a",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.2.255.3/24",
+                    "family": 4,
+                    "id": 9,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/9/"
+                },
+                "primary_ip4": {
+                    "address": "10.2.255.3/24",
+                    "family": 4,
+                    "id": 9,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/9/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 2,
+                    "name": "Site 2",
+                    "slug": "site-2",
+                    "url": "http://localhost:8000/api/dcim/sites/2/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.2.255.3",
+            "name": "2-distro-switch-a",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "2-distro-switch-b": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 3,
+                    "name": "distro-switch",
+                    "slug": "distro-switch",
+                    "url": "http://localhost:8000/api/dcim/device-roles/3/"
+                },
+                "device_type": {
+                    "display_name": "Cisco C9300-48P",
+                    "id": 2,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "C9300-48P",
+                    "slug": "c9300-48p",
+                    "url": "http://localhost:8000/api/dcim/device-types/2/"
+                },
+                "display_name": "2-distro-switch-b",
+                "face": null,
+                "id": 10,
+                "last_updated": "2021-01-30T22:51:11.921201Z",
+                "local_context_data": null,
+                "name": "2-distro-switch-b",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.2.255.4/24",
+                    "family": 4,
+                    "id": 10,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/10/"
+                },
+                "primary_ip4": {
+                    "address": "10.2.255.4/24",
+                    "family": 4,
+                    "id": 10,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/10/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 2,
+                    "name": "Site 2",
+                    "slug": "site-2",
+                    "url": "http://localhost:8000/api/dcim/sites/2/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.2.255.4",
+            "name": "2-distro-switch-b",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "2-wan-router-a": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 1,
+                    "name": "wan-router",
+                    "slug": "wan-router",
+                    "url": "http://localhost:8000/api/dcim/device-roles/1/"
+                },
+                "device_type": {
+                    "display_name": "Cisco ASR-1002HX",
+                    "id": 1,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "ASR-1002HX",
+                    "slug": "asr-1002hx",
+                    "url": "http://localhost:8000/api/dcim/device-types/1/"
+                },
+                "display_name": "2-wan-router-a",
+                "face": null,
+                "id": 7,
+                "last_updated": "2021-01-30T22:51:10.954063Z",
+                "local_context_data": null,
+                "name": "2-wan-router-a",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.2.255.1/24",
+                    "family": 4,
+                    "id": 7,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/7/"
+                },
+                "primary_ip4": {
+                    "address": "10.2.255.1/24",
+                    "family": 4,
+                    "id": 7,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/7/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 2,
+                    "name": "Site 2",
+                    "slug": "site-2",
+                    "url": "http://localhost:8000/api/dcim/sites/2/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.2.255.1",
+            "name": "2-wan-router-a",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "2-wan-router-b": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 1,
+                    "name": "wan-router",
+                    "slug": "wan-router",
+                    "url": "http://localhost:8000/api/dcim/device-roles/1/"
+                },
+                "device_type": {
+                    "display_name": "Cisco ASR-1002HX",
+                    "id": 1,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "ASR-1002HX",
+                    "slug": "asr-1002hx",
+                    "url": "http://localhost:8000/api/dcim/device-types/1/"
+                },
+                "display_name": "2-wan-router-b",
+                "face": null,
+                "id": 8,
+                "last_updated": "2021-01-30T22:51:11.258126Z",
+                "local_context_data": null,
+                "name": "2-wan-router-b",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.2.255.2/24",
+                    "family": 4,
+                    "id": 8,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/8/"
+                },
+                "primary_ip4": {
+                    "address": "10.2.255.2/24",
+                    "family": 4,
+                    "id": 8,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/8/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 2,
+                    "name": "Site 2",
+                    "slug": "site-2",
+                    "url": "http://localhost:8000/api/dcim/sites/2/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.2.255.2",
+            "name": "2-wan-router-b",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "3-access-switch-a": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 4,
+                    "name": "access-switch",
+                    "slug": "access-switch",
+                    "url": "http://localhost:8000/api/dcim/device-roles/4/"
+                },
+                "device_type": {
+                    "display_name": "Cisco C9300-48P",
+                    "id": 2,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "C9300-48P",
+                    "slug": "c9300-48p",
+                    "url": "http://localhost:8000/api/dcim/device-types/2/"
+                },
+                "display_name": "3-access-switch-a",
+                "face": null,
+                "id": 17,
+                "last_updated": "2021-01-30T22:51:14.650896Z",
+                "local_context_data": null,
+                "name": "3-access-switch-a",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.3.255.5/24",
+                    "family": 4,
+                    "id": 17,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/17/"
+                },
+                "primary_ip4": {
+                    "address": "10.3.255.5/24",
+                    "family": 4,
+                    "id": 17,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/17/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 2,
+                    "name": "Site 2",
+                    "slug": "site-2",
+                    "url": "http://localhost:8000/api/dcim/sites/2/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.3.255.5",
+            "name": "3-access-switch-a",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "3-access-switch-b": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 4,
+                    "name": "access-switch",
+                    "slug": "access-switch",
+                    "url": "http://localhost:8000/api/dcim/device-roles/4/"
+                },
+                "device_type": {
+                    "display_name": "Cisco C9300-48P",
+                    "id": 2,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "C9300-48P",
+                    "slug": "c9300-48p",
+                    "url": "http://localhost:8000/api/dcim/device-types/2/"
+                },
+                "display_name": "3-access-switch-b",
+                "face": null,
+                "id": 18,
+                "last_updated": "2021-01-30T22:51:15.126228Z",
+                "local_context_data": null,
+                "name": "3-access-switch-b",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.3.255.6/24",
+                    "family": 4,
+                    "id": 18,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/18/"
+                },
+                "primary_ip4": {
+                    "address": "10.3.255.6/24",
+                    "family": 4,
+                    "id": 18,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/18/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 3,
+                    "name": "Site 3",
+                    "slug": "site-3",
+                    "url": "http://localhost:8000/api/dcim/sites/3/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.3.255.6",
+            "name": "3-access-switch-b",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "3-distro-switch-a": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 3,
+                    "name": "distro-switch",
+                    "slug": "distro-switch",
+                    "url": "http://localhost:8000/api/dcim/device-roles/3/"
+                },
+                "device_type": {
+                    "display_name": "Cisco C9300-48P",
+                    "id": 2,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "C9300-48P",
+                    "slug": "c9300-48p",
+                    "url": "http://localhost:8000/api/dcim/device-types/2/"
+                },
+                "display_name": "3-distro-switch-a",
+                "face": null,
+                "id": 15,
+                "last_updated": "2021-01-30T22:51:13.955009Z",
+                "local_context_data": null,
+                "name": "3-distro-switch-a",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.3.255.3/24",
+                    "family": 4,
+                    "id": 15,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/15/"
+                },
+                "primary_ip4": {
+                    "address": "10.3.255.3/24",
+                    "family": 4,
+                    "id": 15,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/15/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 3,
+                    "name": "Site 3",
+                    "slug": "site-3",
+                    "url": "http://localhost:8000/api/dcim/sites/3/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.3.255.3",
+            "name": "3-distro-switch-a",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "3-distro-switch-b": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 3,
+                    "name": "distro-switch",
+                    "slug": "distro-switch",
+                    "url": "http://localhost:8000/api/dcim/device-roles/3/"
+                },
+                "device_type": {
+                    "display_name": "Cisco C9300-48P",
+                    "id": 2,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "C9300-48P",
+                    "slug": "c9300-48p",
+                    "url": "http://localhost:8000/api/dcim/device-types/2/"
+                },
+                "display_name": "3-distro-switch-b",
+                "face": null,
+                "id": 16,
+                "last_updated": "2021-01-30T22:51:14.325329Z",
+                "local_context_data": null,
+                "name": "3-distro-switch-b",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.3.255.4/24",
+                    "family": 4,
+                    "id": 16,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/16/"
+                },
+                "primary_ip4": {
+                    "address": "10.3.255.4/24",
+                    "family": 4,
+                    "id": 16,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/16/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 3,
+                    "name": "Site 3",
+                    "slug": "site-3",
+                    "url": "http://localhost:8000/api/dcim/sites/3/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.3.255.4",
+            "name": "3-distro-switch-b",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "3-wan-router-a": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 1,
+                    "name": "wan-router",
+                    "slug": "wan-router",
+                    "url": "http://localhost:8000/api/dcim/device-roles/1/"
+                },
+                "device_type": {
+                    "display_name": "Cisco ASR-1002HX",
+                    "id": 1,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "ASR-1002HX",
+                    "slug": "asr-1002hx",
+                    "url": "http://localhost:8000/api/dcim/device-types/1/"
+                },
+                "display_name": "3-wan-router-a",
+                "face": null,
+                "id": 13,
+                "last_updated": "2021-01-30T22:51:13.149089Z",
+                "local_context_data": null,
+                "name": "3-wan-router-a",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.3.255.1/24",
+                    "family": 4,
+                    "id": 13,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/13/"
+                },
+                "primary_ip4": {
+                    "address": "10.3.255.1/24",
+                    "family": 4,
+                    "id": 13,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/13/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 3,
+                    "name": "Site 3",
+                    "slug": "site-3",
+                    "url": "http://localhost:8000/api/dcim/sites/3/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.3.255.1",
+            "name": "3-wan-router-a",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "3-wan-router-b": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {},
+                "created": "2021-01-30",
+                "custom_fields": {},
+                "device_role": {
+                    "id": 1,
+                    "name": "wan-router",
+                    "slug": "wan-router",
+                    "url": "http://localhost:8000/api/dcim/device-roles/1/"
+                },
+                "device_type": {
+                    "display_name": "Cisco ASR-1002HX",
+                    "id": 1,
+                    "manufacturer": {
+                        "id": 1,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://localhost:8000/api/dcim/manufacturers/1/"
+                    },
+                    "model": "ASR-1002HX",
+                    "slug": "asr-1002hx",
+                    "url": "http://localhost:8000/api/dcim/device-types/1/"
+                },
+                "display_name": "3-wan-router-b",
+                "face": null,
+                "id": 14,
+                "last_updated": "2021-01-30T22:51:13.619087Z",
+                "local_context_data": null,
+                "name": "3-wan-router-b",
+                "parent_device": null,
+                "platform": {
+                    "id": 1,
+                    "name": "IOS",
+                    "slug": "ios",
+                    "url": "http://localhost:8000/api/dcim/platforms/1/"
+                },
+                "position": null,
+                "primary_ip": {
+                    "address": "10.3.255.2/24",
+                    "family": 4,
+                    "id": 14,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/14/"
+                },
+                "primary_ip4": {
+                    "address": "10.3.255.2/24",
+                    "family": 4,
+                    "id": 14,
+                    "url": "http://localhost:8000/api/ipam/ip-addresses/14/"
+                },
+                "primary_ip6": null,
+                "rack": null,
+                "serial": "",
+                "site": {
+                    "id": 3,
+                    "name": "Site 3",
+                    "slug": "site-3",
+                    "url": "http://localhost:8000/api/dcim/sites/3/"
+                },
+                "status": {
+                    "id": 1,
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": null,
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            },
+            "groups": [],
+            "hostname": "10.3.255.2",
+            "name": "3-wan-router-b",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        }
+    }
+}

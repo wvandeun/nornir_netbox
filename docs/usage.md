@@ -225,3 +225,26 @@ Enable this option to also create Nornir Hosts for virtual machines stored in th
 | type     | bool         |
 | default  | False        |
 | required | False        |
+
+
+### Defaults file
+
+Path to file with the defaults definition. If the file doesn't exist, it will be skipped.
+More information on on the defaults file can be found in [Nornir's documentation](https://nornir.readthedocs.io/en/latest/tutorial/inventory.html).
+
+| name     | defaults\_file |
+|----------|----------------|
+| type     | str            |
+| default  | "defaults.yaml |
+| required | False          |
+
+### Group file
+
+Path to file with the groups definition. If the file doesn't exist, it will be skipped.
+More information on on the groups file can be found in [Nornir's documentation](https://nornir.readthedocs.io/en/latest/tutorial/inventory.html).
+
+| name     | group\_file  |
+|----------|--------------|
+| type     | str          |
+| default  | "groups.yaml |
+| required | False        |
