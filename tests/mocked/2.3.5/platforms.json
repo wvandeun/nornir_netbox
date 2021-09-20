@@ -1,0 +1,41 @@
+{
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 1,
+            "url": "http://localhost:8080/api/dcim/platforms/1/",
+            "name": "IOS",
+            "slug": "ios",
+            "manufacturer": {
+                "id": 2,
+                "url": "http://localhost:8080/api/dcim/manufacturers/2/",
+                "name": "Cisco",
+                "slug": "cisco"
+            },
+            "napalm_driver": "ios",
+            "napalm_args": null,
+            "description": "",
+            "device_count": 2,
+            "virtualmachine_count": 0
+        },
+        {
+            "id": 5,
+            "url": "http://localhost:8080/api/dcim/platforms/1/",
+            "name": "JunOS",
+            "slug": "junos",
+            "manufacturer": {
+                "id": 3,
+                "url": "http://localhost:8080/api/dcim/manufacturers/3/",
+                "name": "Juniper",
+                "slug": "juniper"
+            },
+            "napalm_driver": "",
+            "napalm_args": null,
+            "description": "",
+            "device_count": 8,
+            "virtualmachine_count": 0
+        }
+    ]
+}

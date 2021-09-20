@@ -1,12 +1,14 @@
 {
     "defaults": {
         "connection_options": {},
-        "data": {},
+        "data": {
+            "domain": "acme.local"
+        },
         "hostname": null,
-        "password": null,
+        "password": "password",
         "platform": null,
         "port": null,
-        "username": null
+        "username": "test"
     },
     "groups": {
         "device_role__rt": {
@@ -211,7 +213,7 @@
             "hostname": "10.0.1.1",
             "name": "1-Core",
             "password": null,
-            "platform": "junos",
+            "platform": "juniper_junos",
             "port": null,
             "username": null
         },
@@ -373,7 +375,7 @@
             "hostname": "192.168.3.1",
             "name": "3-Access",
             "password": null,
-            "platform": "ios",
+            "platform": "cisco_ios",
             "port": null,
             "username": null
         },
@@ -456,7 +458,7 @@
             "hostname": "10.0.1.4",
             "name": "4",
             "password": null,
-            "platform": "junos",
+            "platform": "juniper_junos",
             "port": null,
             "username": null
         }

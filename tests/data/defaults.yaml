@@ -1,0 +1,5 @@
+---
+username: test
+password: password
+data:
+  domain: acme.local

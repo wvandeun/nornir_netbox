@@ -1,0 +1,41 @@
+{
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 1,
+            "url": "http://netboxdemo.internal.sohonet.com/api/dcim/platforms/6/",
+            "name": "IOS",
+            "slug": "ios",
+            "manufacturer": {
+                "id": 2,
+                "url": "http://netboxdemo.internal.sohonet.com/api/dcim/manufacturers/2/",
+                "name": "Cisco",
+                "slug": "cisco"
+            },
+            "napalm_driver": "napalm_ios",
+            "napalm_args": null,
+            "description": "",
+            "device_count": 25,
+            "virtualmachine_count": 0
+        },
+        {
+            "id": 5,
+            "url": "http://netboxdemo.internal.sohonet.com/api/dcim/platforms/5/",
+            "name": "juniper_junos",
+            "slug": "junos",
+            "manufacturer": {
+                "id": 3,
+                "url": "http://netboxdemo.internal.sohonet.com/api/dcim/manufacturers/3/",
+                "name": "Juniper",
+                "slug": "juniper"
+            },
+            "napalm_driver": "napalm_junos",
+            "napalm_args": null,
+            "description": "",
+            "device_count": 28,
+            "virtualmachine_count": 0
+        }
+    ]
+}

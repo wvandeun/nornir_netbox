@@ -18,7 +18,16 @@ Nornir Host objects will be created from the data in your NetBox database:
 * the platform will be set to the platform defined for the device in NetBox
 * all other attributes of a device/virtual machine object in NetBox will be stored under the data attribute of the Nornir Host 
 
-Here is an example on to quickly setup NetBoxInventory2 to retrieve inventory data from NetBox:
+Nornir Group objects will be created from specific device and virtual machine attributes in your NetBox database:
+* groups will be created for the following attributes of devices and virtual machines:
+  - site
+  - platform
+  - device_role (role for virtual machines)
+  - device_type
+  - manufacturer
+* the name of the group will be formed by the combination of the name of the property and the slug of it's value, separated by a double underscore `attribute__slug` (for example a device with has its platform defined as `Cisco IOS`, for which the slug is `ios`. NetBoxInventory2 will create a group `platform__ios` and add the device to the group.)
+* devices and virtual machines will be added to their respective groups
+* defaults and groups files can then be used to define properties for devices or virtual machines (similar to to how Nornir's SimpleInventory plugin works)
 
 ### Installation
 

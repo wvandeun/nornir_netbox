@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nornir_netbox"
-version = "0.2.1"
+version = "0.3.0"
 description = "Netbox plugin for Nornir"
 authors = ["Wim Van Deun <7521270+enzzzy@users.noreply.github.com>", "Clay Curtis <2114016+clay584@users.noreply.github.com>"]
 license = "Apache-2.0"

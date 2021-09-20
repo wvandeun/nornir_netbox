@@ -1,94 +1,87 @@
 {
-  "hosts": {
-    "1-Core": {
-      "name": "1-Core",
-      "port": null,
-      "hostname": "10.0.1.1",
-      "username": null,
-      "password": null,
-      "platform": "junos",
-      "data": {
-        "serial": "",
-        "vendor": "Juniper",
-        "asset_tag": null,
-        "site": "sunnyvale-ca",
-        "role": "rt",
-        "model": "mx480"
-      },
-      "connection_options": {
-      },
-      "groups": []
+    "defaults": {
+        "connection_options": {},
+        "data": {},
+        "hostname": null,
+        "password": null,
+        "platform": null,
+        "port": null,
+        "username": null
     },
-    "2-Distribution": {
-      "name": "2-Distribution",
-      "port": null,
-      "hostname": "172.16.2.1",
-      "username": null,
-      "password": null,
-      "platform": null,
-      "data": {
-        "serial": "",
-        "vendor": "Juniper",
-        "asset_tag": null,
-        "site": "sunnyvale-ca",
-        "role": "rt",
-        "model": "ex4550-32f"
-      },
-      "connection_options": {
-      },
-      "groups": []
-    },
-    "3-Access": {
-      "name": "3-Access",
-      "port": null,
-      "hostname": "192.168.3.1",
-      "username": null,
-      "password": null,
-      "platform": "ios",
-      "data": {
-        "user_defined": 1,
-        "serial": "",
-        "vendor": "Cisco",
-        "asset_tag": null,
-        "site": "san-jose-ca",
-        "role": "sw",
-        "model": "3650-48tq-l"
-      },
-      "connection_options": {
-      },
-      "groups": []
-    },
-    "4": {
-      "name": "4",
-      "port": null,
-      "hostname": "10.0.1.4",
-      "username": null,
-      "password": null,
-      "platform": "junos",
-      "data": {
-        "serial": "",
-        "vendor": "Juniper",
-        "asset_tag": null,
-        "site": "sunnyvale-ca",
-        "role": "rt",
-        "model": "mx480"
-      },
-      "connection_options": {
-      },
-      "groups": []
+    "groups": {},
+    "hosts": {
+        "1-Core": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "model": "mx480",
+                "role": "rt",
+                "serial": "",
+                "site": "sunnyvale-ca",
+                "vendor": "Juniper"
+            },
+            "groups": [],
+            "hostname": "10.0.1.1",
+            "name": "1-Core",
+            "password": null,
+            "platform": "junos",
+            "port": null,
+            "username": null
+        },
+        "2-Distribution": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "model": "ex4550-32f",
+                "role": "rt",
+                "serial": "",
+                "site": "sunnyvale-ca",
+                "vendor": "Juniper"
+            },
+            "groups": [],
+            "hostname": "172.16.2.1",
+            "name": "2-Distribution",
+            "password": null,
+            "platform": null,
+            "port": null,
+            "username": null
+        },
+        "3-Access": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "model": "3650-48tq-l",
+                "role": "sw",
+                "serial": "",
+                "site": "san-jose-ca",
+                "user_defined": 1,
+                "vendor": "Cisco"
+            },
+            "groups": [],
+            "hostname": "192.168.3.1",
+            "name": "3-Access",
+            "password": null,
+            "platform": "ios",
+            "port": null,
+            "username": null
+        },
+        "4": {
+            "connection_options": {},
+            "data": {
+                "asset_tag": null,
+                "model": "mx480",
+                "role": "rt",
+                "serial": "",
+                "site": "sunnyvale-ca",
+                "vendor": "Juniper"
+            },
+            "groups": [],
+            "hostname": "10.0.1.4",
+            "name": "4",
+            "password": null,
+            "platform": "junos",
+            "port": null,
+            "username": null
+        }
     }
-  },
-  "groups": {
-  },
-  "defaults": {
-    "port": null,
-    "hostname": null,
-    "username": null,
-    "password": null,
-    "platform": null,
-    "data": {
-    },
-    "connection_options": {
-    }
-  }
 }
