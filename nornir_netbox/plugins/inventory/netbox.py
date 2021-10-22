@@ -213,6 +213,8 @@ class NetBoxInventory2:
             (defaults to False)
         group_file: path to file with groups definition. If it doesn't exist it will be skipped
         defaults_file: path to file with defaults definition. If it doesn't exist it will be skipped
+        replace_nextpage_fqdn: replace the nextpage fqdn with the one in the NB_URL
+            (defaults to False)
     """
 
     def __init__(
@@ -227,6 +229,7 @@ class NetBoxInventory2:
         use_platform_napalm_driver: bool = False,
         group_file: str = "groups.yaml",
         defaults_file: str = "defaults.yaml",
+        replace_nextpage_fqdn: bool = False,
         **kwargs: Any,
     ) -> None:
         filter_parameters = filter_parameters or {}
@@ -241,6 +244,7 @@ class NetBoxInventory2:
         self.include_vms = include_vms
         self.use_platform_slug = use_platform_slug
         self.use_platform_napalm_driver = use_platform_napalm_driver
+        self.replace_nextpage_fqdn = replace_nextpage_fqdn
 
         self.session = requests.Session()
         self.session.headers.update({"Authorization": f"Token {nb_token}"})
@@ -393,5 +397,8 @@ class NetBoxInventory2:
             resources.extend(resp.get("results"))
 
             url = resp.get("next")
+            if self.replace_nextpage_fqdn and url != None:
+                nextfqdn, sep, tail = url.partition('/api')
+                url = self.nb_url + sep + tail
 
         return resources
