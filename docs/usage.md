@@ -188,15 +188,15 @@ nr = InitNornir(
 )
 ```
 
-### Use platform slugs
+### Use platform slug
 
 NetBox device/vm's have a platform attribute that indicates the type of operating system that is running on the device. This attribute is directly mappend to the Nornir Host's platform attribute, so that connection plugins understand which driver needs to be used to connect to the device.
 
-By default the name attribute of a NetBox platform is mapped to the Nornir Host's platform. Use platform slugs allows you to use the slug of the NetBox platform instead.
+By default the name attribute of a NetBox platform is mapped to the Nornir Host's platform. Use platform slug allows you to use the slug of the NetBox platform instead.
 
-Whether or not you need to enable this option depends on how you defined your platforms in NetBox. Only one of use_platform_slugs and use_platform_napalm_driver can be set as true.
+Whether or not you need to enable this option depends on how you defined your platforms in NetBox. Only one of use_platform_slug and use_platform_napalm_driver can be set as true.
 
-| name        | use\_platform\_slugs                                                            |
+| name        | use\_platform\_slug                                                            |
 |-------------|---------------------------------------------------------------------------------|
 | type        | bool                                                                            |
 | default     | False                                                                           |
@@ -207,7 +207,7 @@ Whether or not you need to enable this option depends on how you defined your pl
 
 Use platform NAPLAM driver works like use platform slugs, but uses the NAPLAM driver attibuted from the NetBox platform instead.
 
-Whether or not you need to enable this option depends on how you defined your platforms in NetBox. Only one of use_platform_slugs and use_platform_napalm_driver can be set as true.
+Whether or not you need to enable this option depends on how you defined your platforms in NetBox. Only one of use_platform_slug and use_platform_napalm_driver can be set as true.
 
 | name        | use\_platform\_napalm\_driver                                                            |
 |-------------|---------------------------------------------------------------------------------|
