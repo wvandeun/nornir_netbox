@@ -308,22 +308,26 @@ class NetBoxInventory2:
         groups = Groups()
         defaults = Defaults()
 
-        if self.defaults_file.exists():
-            with self.defaults_file.open("r") as f:
-                defaults_dict = yml.load(f) or {}
-            defaults = _get_defaults(defaults_dict)
-        else:
-            defaults = Defaults()
+        try:
+            if self.defaults_file.exists():
+                with self.defaults_file.open("r") as f:
+                    defaults_dict = yml.load(f) or {}
+                defaults = _get_defaults(defaults_dict)
+        except PermissionError:
+            pass
 
-        if self.group_file.exists():
-            with self.group_file.open("r") as f:
-                groups_dict = yml.load(f) or {}
+        try:
+            if self.group_file.exists():
+                with self.group_file.open("r") as f:
+                    groups_dict = yml.load(f) or {}
 
-            for n, g in groups_dict.items():
-                groups[n] = _get_inventory_element(Group, g, n, defaults)
+                for n, g in groups_dict.items():
+                    groups[n] = _get_inventory_element(Group, g, n, defaults)
 
-            for g in groups.values():
-                g.groups = ParentGroups([groups[g] for g in g.groups])
+                for g in groups.values():
+                    g.groups = ParentGroups([groups[g] for g in g.groups])
+        except PermissionError:
+            pass
 
         for device in nb_devices:
             serialized_device: Dict[Any, Any] = {}
