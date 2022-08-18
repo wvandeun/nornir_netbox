@@ -227,6 +227,7 @@ class NetBoxInventory2:
         use_platform_napalm_driver: bool = False,
         group_file: str = "groups.yaml",
         defaults_file: str = "defaults.yaml",
+        ignore_file_errors: bool = False,
         **kwargs: Any,
     ) -> None:
         filter_parameters = filter_parameters or {}
@@ -247,6 +248,7 @@ class NetBoxInventory2:
         self.session.verify = ssl_verify
         self.group_file = Path(group_file).expanduser()
         self.defaults_file = Path(defaults_file).expanduser()
+        self.ignore_file_errors = ignore_file_errors
 
         if self.use_platform_slug and self.use_platform_napalm_driver:
             raise ValueError(
@@ -313,8 +315,11 @@ class NetBoxInventory2:
                 with self.defaults_file.open("r") as f:
                     defaults_dict = yml.load(f) or {}
                 defaults = _get_defaults(defaults_dict)
-        except PermissionError:
-            pass
+        except PermissionError as e:
+            if not self.ignore_file_errors:
+                raise PermissionError(e)
+
+            warnings.warn("Error ignored while reading file: {}".format(e))
 
         try:
             if self.group_file.exists():
@@ -326,8 +331,11 @@ class NetBoxInventory2:
 
                 for g in groups.values():
                     g.groups = ParentGroups([groups[g] for g in g.groups])
-        except PermissionError:
-            pass
+        except PermissionError as e:
+            if not self.ignore_file_errors:
+                raise PermissionError(e)
+
+            warnings.warn("Error ignored while reading file: {}".format(e))
 
         for device in nb_devices:
             serialized_device: Dict[Any, Any] = {}

@@ -353,3 +353,70 @@ class TestNetBoxInventory2(BaseTestInventory):
             expected = json.load(f)
 
         assert expected == inv.dict()
+
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_defaults_file_with_bad_permissions_raises_exception(
+        self, requests_mock: Mocker, version: str
+    ) -> None:
+        "test loading inventory with defaults file that has bad permissions, should raise an exception"
+
+        # Set the permissions on the files
+        os.chmod(f"{BASE_PATH}/data/defaults-perms.yaml", 000)
+        os.chmod(f"{BASE_PATH}/data/groups-perms.yaml", 0o644)
+
+        with pytest.raises(PermissionError):
+            inv = get_inv(
+                requests_mock,
+                self.plugin,
+                False,
+                version,
+                defaults_file=f"{BASE_PATH}/data/defaults-perms.yaml",
+            )
+            assert inv
+
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_group_file_with_bad_permissions_raises_exception(
+        self, requests_mock: Mocker, version: str
+    ) -> None:
+        "test loading inventory with group file that has bad permissions, should raise an exception"
+
+        # Set the permissions on the files
+        os.chmod(f"{BASE_PATH}/data/defaults-perms.yaml", 0o644)
+        os.chmod(f"{BASE_PATH}/data/groups-perms.yaml", 000)
+
+        with pytest.raises(PermissionError):
+            inv = get_inv(
+                requests_mock,
+                self.plugin,
+                False,
+                version,
+                group_file=f"{BASE_PATH}/data/groups-perms.yaml",
+            )
+            assert inv
+
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_ignore_file_errors_and_bad_permissions_on_files(
+        self, requests_mock: Mocker, version: str
+    ) -> None:
+        "test loading inventory with bad permissions on both the defaults and groups file with ignore_file_errors, should not raise an exception"
+        
+        # Set the permissions on the files
+        os.chmod(f"{BASE_PATH}/data/defaults-perms.yaml", 000)
+        os.chmod(f"{BASE_PATH}/data/groups-perms.yaml", 000)
+
+        inv = get_inv(
+            requests_mock,
+            self.plugin,
+            False,
+            version,
+            ignore_file_errors=True,
+            defaults_file=f"{BASE_PATH}/data/defaults-perms.yaml",
+            group_file=f"{BASE_PATH}/data/groups-perms.yaml",
+        )
+
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected.json", "r"
+        ) as f:
+            expected = json.load(f)
+
+        assert expected == inv.dict()
