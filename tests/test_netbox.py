@@ -358,7 +358,7 @@ class TestNetBoxInventory2(BaseTestInventory):
     def test_inventory_defaults_file_with_bad_permissions_raises_exception(
         self, requests_mock: Mocker, version: str
     ) -> None:
-        "test loading inventory with defaults file that has bad permissions, should raise an exception"
+        "test loading inventory with defaults file with bad permissions, should raise an exception"
 
         # Set the permissions on the files
         os.chmod(f"{BASE_PATH}/data/defaults-perms.yaml", 000)
@@ -372,6 +372,9 @@ class TestNetBoxInventory2(BaseTestInventory):
                 version,
                 defaults_file=f"{BASE_PATH}/data/defaults-perms.yaml",
             )
+
+            # Reset the permissions to the default
+            os.chmod(f"{BASE_PATH}/data/defaults-perms.yaml", 0o644)
             assert inv
 
     @pytest.mark.parametrize("version", VERSIONS)
@@ -392,14 +395,18 @@ class TestNetBoxInventory2(BaseTestInventory):
                 version,
                 group_file=f"{BASE_PATH}/data/groups-perms.yaml",
             )
+
+            # Reset the permissions to the default
+            os.chmod(f"{BASE_PATH}/data/groups-perms.yaml", 0o644)
             assert inv
 
     @pytest.mark.parametrize("version", VERSIONS)
     def test_inventory_with_ignore_file_errors_and_bad_permissions_on_files(
         self, requests_mock: Mocker, version: str
     ) -> None:
-        "test loading inventory with bad permissions on both the defaults and groups file with ignore_file_errors, should not raise an exception"
-        
+        "test loading inventory with bad permissions on both the defaults and groups file with"
+        "ignore_file_errors, should not raise an exception"
+
         # Set the permissions on the files
         os.chmod(f"{BASE_PATH}/data/defaults-perms.yaml", 000)
         os.chmod(f"{BASE_PATH}/data/groups-perms.yaml", 000)
@@ -418,5 +425,9 @@ class TestNetBoxInventory2(BaseTestInventory):
             f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected.json", "r"
         ) as f:
             expected = json.load(f)
+
+        # Reset the permissions to the default
+        os.chmod(f"{BASE_PATH}/data/defaults-perms.yaml", 0o644)
+        os.chmod(f"{BASE_PATH}/data/groups-perms.yaml", 0o644)
 
         assert expected == inv.dict()
