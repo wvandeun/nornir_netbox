@@ -248,3 +248,13 @@ More information on on the groups file can be found in [Nornir's documentation](
 | type     | str          |
 | default  | "groups.yaml |
 | required | False        |
+
+### Ignore File Errors
+
+When reading the defaults or group files there can be errors like permissions issues. Enabling this option will ignore those errors.
+
+| name     | ignore\_file\_errors |
+|----------|----------------------|
+| type     | bool                 |
+| default  | False                |
+| required | False                |
