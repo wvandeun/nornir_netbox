@@ -1,5 +1,6 @@
 import os
 import warnings
+import logging
 from typing import Any
 from typing import Dict
 from typing import List
@@ -20,6 +21,8 @@ from nornir.core.inventory import ParentGroups
 
 import requests
 import ruamel.yaml
+
+logger = logging.getLogger(__name__)
 
 
 def _get_connection_options(data: Dict[str, Any]) -> Dict[str, ConnectionOptions]:
@@ -315,11 +318,11 @@ class NetBoxInventory2:
                 with self.defaults_file.open("r") as f:
                     defaults_dict = yml.load(f) or {}
                 defaults = _get_defaults(defaults_dict)
-        except PermissionError as e:
+        except PermissionError:
             if not self.ignore_file_errors:
-                raise PermissionError(e)
+                raise
 
-            warnings.warn("Error ignored while reading file: {}".format(e))
+            logger.warn(f"Unable to read {self.defaults_file} due to a permission issue")
 
         try:
             if self.group_file.exists():
@@ -331,11 +334,11 @@ class NetBoxInventory2:
 
                 for g in groups.values():
                     g.groups = ParentGroups([groups[g] for g in g.groups])
-        except PermissionError as e:
+        except PermissionError:
             if not self.ignore_file_errors:
-                raise PermissionError(e)
+                raise
 
-            warnings.warn("Error ignored while reading file: {}".format(e))
+            logger.warn(f"Unable to read {self.group_file} due to a permission issue")
 
         for device in nb_devices:
             serialized_device: Dict[Any, Any] = {}
