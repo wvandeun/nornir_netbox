@@ -322,7 +322,9 @@ class NetBoxInventory2:
             if not self.ignore_file_errors:
                 raise
 
-            logger.warn(f"Unable to read {self.defaults_file} due to a permission issue")
+            logger.warn(
+                f"Unable to read {self.defaults_file} due to a permission issue"
+            )
 
         try:
             if self.group_file.exists():
