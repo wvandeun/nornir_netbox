@@ -355,14 +355,13 @@ class TestNetBoxInventory2(BaseTestInventory):
         assert expected == inv.dict()
 
     @pytest.mark.parametrize("version", VERSIONS)
-    def test_inventory_defaults_file_with_bad_permissions_raises_exception(
-        self, requests_mock: Mocker, version: str
+    def test_inventory_with_defaults_file_permission_error_raises_exception(
+        self, tmp_path, requests_mock: Mocker, version: str
     ) -> None:
         "test loading inventory with defaults file with bad permissions, should raise an exception"
 
-        # Set the permissions on the files
-        os.chmod(f"{BASE_PATH}/data/defaults-perms.yaml", 000)
-        os.chmod(f"{BASE_PATH}/data/groups-perms.yaml", 0o644)
+        defaults_file = tmp_path / "defaults-000.yaml"
+        defaults_file.touch(mode=0, exist_ok=True)
 
         with pytest.raises(PermissionError):
             inv = get_inv(
@@ -370,22 +369,18 @@ class TestNetBoxInventory2(BaseTestInventory):
                 self.plugin,
                 False,
                 version,
-                defaults_file=f"{BASE_PATH}/data/defaults-perms.yaml",
+                defaults_file=defaults_file,
+                group_file=f"{BASE_PATH}/data/group.yaml",
             )
 
-            # Reset the permissions to the default
-            os.chmod(f"{BASE_PATH}/data/defaults-perms.yaml", 0o644)
-            assert inv
-
     @pytest.mark.parametrize("version", VERSIONS)
-    def test_inventory_group_file_with_bad_permissions_raises_exception(
-        self, requests_mock: Mocker, version: str
+    def test_inventory_with_group_file_permission_error_raises_exception(
+        self, tmp_path, requests_mock: Mocker, version: str
     ) -> None:
         "test loading inventory with group file that has bad permissions, should raise an exception"
 
-        # Set the permissions on the files
-        os.chmod(f"{BASE_PATH}/data/defaults-perms.yaml", 0o644)
-        os.chmod(f"{BASE_PATH}/data/groups-perms.yaml", 000)
+        group_file = tmp_path / "group-000.yaml"
+        group_file.touch(mode=0, exist_ok=True)
 
         with pytest.raises(PermissionError):
             inv = get_inv(
@@ -393,32 +388,83 @@ class TestNetBoxInventory2(BaseTestInventory):
                 self.plugin,
                 False,
                 version,
-                group_file=f"{BASE_PATH}/data/groups-perms.yaml",
+                defaults_file=f"{BASE_PATH}/data/defaults.yaml",
+                group_file=group_file,
             )
 
-            # Reset the permissions to the default
-            os.chmod(f"{BASE_PATH}/data/groups-perms.yaml", 0o644)
-            assert inv
-
     @pytest.mark.parametrize("version", VERSIONS)
-    def test_inventory_with_ignore_file_errors_and_bad_permissions_on_files(
-        self, requests_mock: Mocker, version: str
+    def test_inventory_with_defaults_file_ignore_permission_error(
+        self, tmp_path, requests_mock: Mocker, version: str
     ) -> None:
-        "test loading inventory with bad permissions on both the defaults and groups file with"
-        "ignore_file_errors, should not raise an exception"
+        "test loading inventory with defaults file with bad permissions, should not raise an exception"
 
-        # Set the permissions on the files
-        os.chmod(f"{BASE_PATH}/data/defaults-perms.yaml", 000)
-        os.chmod(f"{BASE_PATH}/data/groups-perms.yaml", 000)
+        defaults_file = tmp_path / "defaults-000.yaml"
+        defaults_file.touch(mode=0, exist_ok=True)
+
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected.json", "r"
+        ) as f:
+            expected = json.load(f)
 
         inv = get_inv(
             requests_mock,
             self.plugin,
             False,
             version,
-            ignore_file_errors=True,
-            defaults_file=f"{BASE_PATH}/data/defaults-perms.yaml",
-            group_file=f"{BASE_PATH}/data/groups-perms.yaml",
+            defaults_file=defaults_file,
+            group_file=f"{BASE_PATH}/data/group.yaml",
+            ignore_file_permission_errors=True,
+        )
+
+        assert inv.dict() == expected
+
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_group_file_ignore_permission_error(
+        self, tmp_path, requests_mock: Mocker, version: str
+    ) -> None:
+        "test loading inventory with group file with bad permissions, should not raise an exception"
+
+        group_file = tmp_path / "group-000.yaml"
+        group_file.touch(mode=0, exist_ok=True)
+
+        with open(
+            f"{BASE_PATH}/{self.plugin.__name__}/{version}/expected-defaults.json", "r"
+        ) as f:
+            expected = json.load(f)
+
+        inv = get_inv(
+            requests_mock,
+            self.plugin,
+            False,
+            version,
+            group_file=group_file,
+            defaults_file=f"{BASE_PATH}/data/defaults.yaml",
+            ignore_file_permission_errors=True,
+        )
+
+        assert inv.dict() == expected
+
+    @pytest.mark.parametrize("version", VERSIONS)
+    def test_inventory_with_ignore_file_errors_and_bad_permissions_on_files(
+        self, tmp_path, requests_mock: Mocker, version: str
+    ) -> None:
+        "test loading inventory with bad permissions on both the defaults and groups file with"
+        "ignore_file_errors, should not raise an exception"
+
+        # Set the permissions on the files
+        defaults_file = tmp_path / "defaults-000.yaml"
+        defaults_file.touch(mode=0, exist_ok=True)
+        group_file = tmp_path / "group-000.yaml"
+        group_file.touch(mode=0, exist_ok=True)
+
+        inv = get_inv(
+            requests_mock,
+            self.plugin,
+            False,
+            version,
+            ignore_file_permission_errors=True,
+            defaults_file=defaults_file,
+            group_file=group_file,
         )
 
         with open(
