@@ -248,3 +248,13 @@ More information on on the groups file can be found in [Nornir's documentation](
 | type     | str          |
 | default  | "groups.yaml |
 | required | False        |
+
+### Ignore file permission errors
+
+Ignore file defaults or group file permission errors. Enabling this option will continue loading the inventory when file permission errors are encountered for the defaults or group file.
+
+| name     | ignore\_file\_permission\_errors |
+|----------|----------------------|
+| type     | bool                 |
+| default  | False                |
+| required | False                |
