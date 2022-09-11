@@ -1,5 +1,6 @@
 import os
 import warnings
+import logging
 from typing import Any
 from typing import Dict
 from typing import List
@@ -20,6 +21,8 @@ from nornir.core.inventory import ParentGroups
 
 import requests
 import ruamel.yaml
+
+logger = logging.getLogger(__name__)
 
 
 def _get_connection_options(data: Dict[str, Any]) -> Dict[str, ConnectionOptions]:
@@ -213,6 +216,8 @@ class NetBoxInventory2:
             (defaults to False)
         group_file: path to file with groups definition. If it doesn't exist it will be skipped
         defaults_file: path to file with defaults definition. If it doesn't exist it will be skipped
+        ignore_file_permission_errors: Ignore permission errors for the group and defaults file
+            (defaults to False)
     """
 
     def __init__(
@@ -227,6 +232,7 @@ class NetBoxInventory2:
         use_platform_napalm_driver: bool = False,
         group_file: str = "groups.yaml",
         defaults_file: str = "defaults.yaml",
+        ignore_file_permission_errors: bool = False,
         **kwargs: Any,
     ) -> None:
         filter_parameters = filter_parameters or {}
@@ -247,6 +253,7 @@ class NetBoxInventory2:
         self.session.verify = ssl_verify
         self.group_file = Path(group_file).expanduser()
         self.defaults_file = Path(defaults_file).expanduser()
+        self.ignore_file_permission_errors = ignore_file_permission_errors
 
         if self.use_platform_slug and self.use_platform_napalm_driver:
             raise ValueError(
@@ -307,23 +314,41 @@ class NetBoxInventory2:
         hosts = Hosts()
         groups = Groups()
         defaults = Defaults()
+        defaults_dict: Dict[str, Any] = {}
+        groups_dict: Dict[str, Any] = {}
 
         if self.defaults_file.exists():
-            with self.defaults_file.open("r") as f:
-                defaults_dict = yml.load(f) or {}
-            defaults = _get_defaults(defaults_dict)
-        else:
-            defaults = Defaults()
+            try:
+                with self.defaults_file.open("r") as f:
+                    defaults_dict = yml.load(f) or {}
+            except PermissionError:
+                if not self.ignore_file_permission_errors:
+                    raise
+
+                logger.warn(
+                    f"Unable to read defaults file {self.defaults_file} due to a permission issue"
+                )
+
+        defaults = _get_defaults(defaults_dict)
 
         if self.group_file.exists():
-            with self.group_file.open("r") as f:
-                groups_dict = yml.load(f) or {}
+            try:
+                with self.group_file.open("r") as f:
+                    groups_dict = yml.load(f) or {}
 
-            for n, g in groups_dict.items():
-                groups[n] = _get_inventory_element(Group, g, n, defaults)
+            except PermissionError:
+                if not self.ignore_file_permission_errors:
+                    raise
 
-            for g in groups.values():
-                g.groups = ParentGroups([groups[g] for g in g.groups])
+                logger.warn(
+                    f"Unable to read group file {self.group_file} due to a permission issue"
+                )
+
+        for n, g in groups_dict.items():
+            groups[n] = _get_inventory_element(Group, g, n, defaults)
+
+        for g in groups.values():
+            g.groups = ParentGroups([groups[g] for g in g.groups])
 
         for device in nb_devices:
             serialized_device: Dict[Any, Any] = {}
