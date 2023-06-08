@@ -10,7 +10,7 @@ license = "Apache-2.0"
 "NetBoxInventory2" = "nornir_netbox.plugins.inventory.netbox:NetBoxInventory2"
 
 [tool.poetry.dependencies]
-python = ">=3.6.2,<4.0"
+python = ">=3.7,<4.0"
 requests = "^2.23.0"
 nornir = { version = "~3", allow-prereleases = true }
 
