@@ -213,6 +213,8 @@ class NetBoxInventory2:
             (defaults to False)
         group_file: path to file with groups definition. If it doesn't exist it will be skipped
         defaults_file: path to file with defaults definition. If it doesn't exist it will be skipped
+        device_pagination_number: pagination we use when getting netbox devices.
+            (defaults to 500)
     """
 
     def __init__(
@@ -227,6 +229,7 @@ class NetBoxInventory2:
         use_platform_napalm_driver: bool = False,
         group_file: str = "groups.yaml",
         defaults_file: str = "defaults.yaml",
+        device_pagination_number: int = 500,
         **kwargs: Any,
     ) -> None:
         filter_parameters = filter_parameters or {}
@@ -247,6 +250,7 @@ class NetBoxInventory2:
         self.session.verify = ssl_verify
         self.group_file = Path(group_file).expanduser()
         self.defaults_file = Path(defaults_file).expanduser()
+        self.device_pagination_number = device_pagination_number
 
         if self.use_platform_slug and self.use_platform_napalm_driver:
             raise ValueError(
@@ -292,7 +296,7 @@ class NetBoxInventory2:
         nb_devices: List[Dict[str, Any]] = []
 
         nb_devices = self._get_resources(
-            url=f"{self.nb_url}/api/dcim/devices/?limit=0",
+            url=f"{self.nb_url}/api/dcim/devices/?limit={device_pagination_number}",
             params=self.filter_parameters,
         )
 
