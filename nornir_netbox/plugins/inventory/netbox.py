@@ -298,16 +298,23 @@ class NetBoxInventory2:
 
         nb_devices: List[Dict[str, Any]] = []
 
+        device_params = dict(self.filter_parameters)
+        if not device_params.get("limit"):
+            device_params["limit"] = 0
+
         nb_devices = self._get_resources(
-            url=f"{self.nb_url}/api/dcim/devices/?limit=0",
-            params=self.filter_parameters,
+            url=f"{self.nb_url}/api/dcim/devices/",
+            params=device_params,
         )
 
         if self.include_vms:
+            vm_params = dict(self.filter_parameters)
+            if not vm_params.get("limit"):
+                vm_params["limit"] = 0
             nb_devices.extend(
                 self._get_resources(
-                    url=f"{self.nb_url}/api/virtualization/virtual-machines/?limit=0",
-                    params=self.filter_parameters,
+                    url=f"{self.nb_url}/api/virtualization/virtual-machines/",
+                    params=vm_params,
                 )
             )
 
@@ -405,9 +412,13 @@ class NetBoxInventory2:
     def _get_resources(self, url: str, params: Dict[str, Any]) -> List[Dict[str, Any]]:
 
         resources: List[Dict[str, Any]] = []
+        # If a non-zero limit is specified, only fetch the single requested page.
+        # If limit is 0 or absent, paginate through all results.
+        paginate = not params.get("limit")
+        request_params: Optional[Dict[str, Any]] = params
 
         while url:
-            r = self.session.get(url, params=params)
+            r = self.session.get(url, params=request_params)
 
             if not r.status_code == 200:
                 raise ValueError(
@@ -417,6 +428,10 @@ class NetBoxInventory2:
             resp = r.json()
             resources.extend(resp.get("results"))
 
-            url = resp.get("next")
+            if paginate:
+                url = resp.get("next")
+                request_params = None  # next URL already contains all params
+            else:
+                url = None
 
         return resources
