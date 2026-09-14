@@ -129,7 +129,6 @@ class NBInventory:
         defaults = Defaults()
 
         for device in nb_devices:
-
             serialized_device: Dict[Any, Any] = {}
             serialized_device["data"] = {}
             serialized_device["data"]["serial"] = device.get("serial")
@@ -323,7 +322,7 @@ class NetBoxInventory2:
                 groups[n] = _get_inventory_element(Group, g, n, defaults)
 
             for g in groups.values():
-                g.groups = ParentGroups([groups[g] for g in g.groups])
+                g.groups = ParentGroups([groups[g.name] for g in g.groups])
 
         for device in nb_devices:
             serialized_device: Dict[Any, Any] = {}
