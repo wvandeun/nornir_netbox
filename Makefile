@@ -1,18 +1,18 @@
 .PHONY: pytest
 pytest:
-	poetry run pytest --cov=nornir_netbox --cov-report=term-missing -vs ${ARGS}
+	uv run pytest --cov=src/nornir_netbox --cov-report=term-missing -vs ${ARGS}
 
-.PHONY: black
+.PHONY: format
 black:
-	poetry run black --check .
+	uv run ruff format --check .
 
-.PHONY: pylama
+.PHONY: ruff
 pylama:
-	poetry run pylama .
+	uv run check .
 
 .PHONY: mypy
 mypy:
-	poetry run mypy .
+	uv run mypy .
 
 .PHONY: tests
-tests: black pylama mypy pytest
+tests: format ruff mypy pytest
